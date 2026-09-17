@@ -1,0 +1,444 @@
+<!-- Top Bar -->
+<div class="top-bar">
+  <span>🚚 500 TL Üzeri Ücretsiz Kargo</span>
+  <span>✨ Yeni Sezon Koleksiyonu Geldi</span>
+  <span>💳 Kapıda Ödeme İmkanı</span>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-sol">
+    <button class="menu-btn" onclick="menuAc()">☰</button>
+  </div>
+  <div class="logo">AYKUT GİYİM</div>
+  <div class="header-sag">
+    <button class="ikon-btn" onclick="aramaAc()">🔍</button>
+    <button class="ikon-btn" onclick="favorilerAc()">♡</button>
+    <button class="ikon-btn sepet-btn" onclick="sayfaGoster('sepet')">
+      🛒 <span class="sepet-sayi">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- Arama Kutusu -->
+<div class="arama-overlay" id="arama-overlay">
+  <div class="arama-kutu">
+    <input type="text" placeholder="Ne aramıştınız?" id="arama-input">
+    <button onclick="aramaKapat()">✕</button>
+  </div>
+</div>
+
+<!-- Mobil Menü -->
+<div class="mobil-menu" id="mobil-menu">
+  <button class="kapat-btn" onclick="menuKapat()">✕</button>
+  <nav>
+    <a href="#" onclick="sayfaGoster('anasayfa'); menuKapat()">Ana Sayfa</a>
+    <a href="#" onclick="sayfaGoster('urunler'); menuKapat()">Ürünler</a>
+    <a href="#" onclick="sayfaGoster('kampanyalar'); menuKapat()">Kampanyalar</a>
+    <a href="#" onclick="sayfaGoster('hakkimizda'); menuKapat()">Hakkımızda</a>
+    <a href="#" onclick="sayfaGoster('iletisim'); menuKapat()">İletişim</a>
+    <a href="#" onclick="sayfaGoster('kargo'); menuKapat()">Kargo & İade</a>
+  </nav>
+</div>
+
+<!-- Kategori Menü -->
+<div class="kategori-menu">
+  <a href="#" onclick="sayfaGoster('anasayfa')">Ana Sayfa</a>
+  <a href="#" onclick="sayfaGoster('urunler')">Ürünler</a>
+  <a href="#" onclick="sayfaGoster('kampanyalar')">Kampanyalar</a>
+  <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
+  <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
+  <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
+</div>
+
+<!-- ===================== ANA SAYFA ===================== -->
+<div id="sayfa-anasayfa" class="sayfa aktif-sayfa">
+
+  <!-- Hero Banner -->
+  <div class="hero">
+    <div class="hero-icerik">
+      <p class="hero-alt">Yeni Sezon 2026</p>
+      <h1>Stilini Taşı,<br>İz Bırak.</h1>
+      <p class="hero-aciklama">Zamansız tasarımlar, güçlü detaylar. Sadece sana özel.</p>
+      <button onclick="sayfaGoster('urunler')">Koleksiyonu Keşfet</button>
+    </div>
+  </div>
+
+  <!-- Kategori Kartları -->
+  <section class="kategori-bolum">
+    <div class="kategori-grid">
+      <div class="kategori-kart buyuk" onclick="sayfaGoster('urunler')">
+        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600" alt="Montlar">
+        <div class="kategori-yazi">
+          <p>KOLEKSİYONUMUZDAN</p>
+          <h3>Montlar</h3>
+          <span>Keşfet →</span>
+        </div>
+      </div>
+      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Elbiseler">
+        <div class="kategori-yazi">
+          <p>KOLEKSİYONUMUZDAN</p>
+          <h3>Elbiseler</h3>
+          <span>Keşfet →</span>
+        </div>
+      </div>
+      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+        <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Ceketler">
+        <div class="kategori-yazi">
+          <p>KOLEKSİYONUMUZDAN</p>
+          <h3>Ceketler</h3>
+          <span>Keşfet →</span>
+        </div>
+      </div>
+      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazaklar">
+        <div class="kategori-yazi">
+          <p>KOLEKSİYONUMUZDAN</p>
+          <h3>Kazaklar</h3>
+          <span>Keşfet →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yeni Gelenler -->
+  <section class="bolum">
+    <h2 class="bolum-baslik">Yeni Gelenler</h2>
+    <div class="urun-grid">
+      <div class="urun-kart">
+        <div class="urun-resim">
+          <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Elbise">
+          <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+        </div>
+        <h3>Elegant Elbise</h3>
+        <p>799 TL</p>
+      </div>
+      <div class="urun-kart">
+        <div class="urun-resim">
+          <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Blazer">
+          <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+        </div>
+        <h3>Siyah Blazer</h3>
+        <p>599 TL</p>
+      </div>
+      <div class="urun-kart">
+        <div class="urun-resim">
+          <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazak">
+          <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+        </div>
+        <h3>Kaşmir Kazak</h3>
+        <p>899 TL</p>
+      </div>
+      <div class="urun-kart">
+        <div class="urun-resim">
+          <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Ceket">
+          <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+        </div>
+        <h3>Deri Ceket</h3>
+        <p>1199 TL</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <button class="tumu-btn" onclick="sayfaGoster('urunler')">Tümünü Görüntüle</button>
+    </div>
+  </section>
+
+  <!-- İstatistikler -->
+  <section class="istatistik">
+    <div class="istatistik-grid">
+      <div><h3>35+</h3><p>Yıllık Deneyim</p></div>
+      <div><h3>10K+</h3><p>Mutlu Müşteri</p></div>
+      <div><h3>500+</h3><p>Ürün Çeşidi</p></div>
+      <div><h3>4.9★</h3><p>Müşteri Puanı</p></div>
+    </div>
+  </section>
+
+  <!-- Hikaye -->
+  <section class="hikaye">
+    <div class="hikaye-icerik">
+      <div class="hikaye-yazi">
+        <p class="ust-yazi">BİZİM HİKAYEMİZ</p>
+        <h2>Giyim, sadece bir aksesuar değil — bir ifade biçimi.</h2>
+        <p>Aykut Giyim olarak 1990'dan bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Her parçayı özenle seçiyor, size kendinizi özel hissettirmek için çalışıyoruz.</p>
+        <button onclick="sayfaGoster('hakkimizda')">Hikayemizi Keşfet</button>
+      </div>
+      <div class="hikaye-resim">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Mağaza">
+      </div>
+    </div>
+  </section>
+
+  <!-- Müşteri Yorumları -->
+  <section class="bolum yorumlar">
+    <h2 class="bolum-baslik">Müşterilerimiz Diyor Ki</h2>
+    <div class="yorum-grid">
+      <div class="yorum-kart">
+        <p class="yildiz">★★★★★</p>
+        <p>"Kalitesi ve şıklığıyla beklentilerimin çok üzerinde. Her gün giyiyorum, rengini koruyor."</p>
+        <p class="yorum-isim">Elif K. — İstanbul</p>
+      </div>
+      <div class="yorum-kart">
+        <p class="yildiz">★★★★★</p>
+        <p>"Siparişim çok hızlı geldi ve paketleme inanılmaz özenli yapılmış. Kesinlikle tekrar alacağım."</p>
+        <p class="yorum-isim">Selin M. — Ankara</p>
+      </div>
+      <div class="yorum-kart">
+        <p class="yildiz">★★★★★</p>
+        <p>"Hem şık hem de çok kaliteli. Fiyat-performans açısından mükemmel. Herkese tavsiye ederim!"</p>
+        <p class="yorum-isim">Zeynep A. — Bursa</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== ÜRÜNLER ===================== -->
+<div id="sayfa-urunler" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>Tüm Ürünler</h1>
+  </div>
+  <div class="filtre-bar">
+    <button class="filtre-btn aktif-filtre" onclick="filtrele('hepsi',this)">Hepsi</button>
+    <button class="filtre-btn" onclick="filtrele('elbise',this)">Elbise</button>
+    <button class="filtre-btn" onclick="filtrele('ceket',this)">Ceket</button>
+    <button class="filtre-btn" onclick="filtrele('kazak',this)">Kazak</button>
+    <button class="filtre-btn" onclick="filtrele('mont',this)">Mont</button>
+  </div>
+  <div class="urun-grid genis" id="urunler-grid">
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim">
+        <div class="indirim-etiket">%20</div>
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Elbise">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Elegant Elbise</h3>
+      <p><span class="eski-fiyat">999 TL</span> <span class="yeni-fiyat">799 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim">
+        <img src="https://images.unsplash.com/photo-1562137369-1a1a0bc66744?w=400" alt="Elbise">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Şık Elbise</h3>
+      <p>1299 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="ceket">
+      <div class="urun-resim">
+        <div class="indirim-etiket">%30</div>
+        <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Blazer">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Siyah Blazer</h3>
+      <p><span class="eski-fiyat">849 TL</span> <span class="yeni-fiyat">599 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="ceket">
+      <div class="urun-resim">
+        <div class="indirim-etiket">%25</div>
+        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Deri Ceket">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Deri Ceket</h3>
+      <p><span class="eski-fiyat">1599 TL</span> <span class="yeni-fiyat">1199 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="kazak">
+      <div class="urun-resim">
+        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazak">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Kaşmir Kazak</h3>
+      <p>899 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="mont">
+      <div class="urun-resim">
+        <div class="indirim-etiket">%40</div>
+        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400" alt="Mont">
+        <button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button>
+      </div>
+      <h3>Kışlık Mont</h3>
+      <p><span class="eski-fiyat">1999 TL</span> <span class="yeni-fiyat">1199 TL</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== KAMPANYALAR ===================== -->
+<div id="sayfa-kampanyalar" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>Kampanyalar</h1>
+  </div>
+  <section class="bolum">
+    <div class="kampanya-grid">
+      <div class="kampanya-kart">
+        <div class="kampanya-ikon">🏷️</div>
+        <h3>Sezon Sonu İndirimi</h3>
+        <p>Seçili ürünlerde %40'a varan indirim fırsatı!</p>
+        <button onclick="sayfaGoster('urunler')">Ürünlere Git</button>
+      </div>
+      <div class="kampanya-kart">
+        <div class="kampanya-ikon">🚚</div>
+        <h3>Ücretsiz Kargo</h3>
+        <p>500 TL ve üzeri tüm siparişlerde ücretsiz kargo!</p>
+        <button onclick="sayfaGoster('urunler')">Hemen Al</button>
+      </div>
+      <div class="kampanya-kart">
+        <div class="kampanya-ikon">🎁</div>
+        <h3>2 Al 1 Öde</h3>
+        <p>Seçili kazak ve bluz ürünlerinde geçerlidir.</p>
+        <button onclick="sayfaGoster('urunler')">Keşfet</button>
+      </div>
+      <div class="kampanya-kart">
+        <div class="kampanya-ikon">💳</div>
+        <h3>Kapıda Ödeme</h3>
+        <p>Tüm siparişlerde kapıda ödeme imkanı sunuyoruz.</p>
+        <button onclick="sayfaGoster('urunler')">Alışverişe Başla</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== HAKKIMIZDA ===================== -->
+<div id="sayfa-hakkimizda" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>Hakkımızda</h1>
+  </div>
+  <section class="hikaye">
+    <div class="hikaye-icerik">
+      <div class="hikaye-yazi">
+        <p class="ust-yazi">BİZİM HİKAYEMİZ</p>
+        <h2>1990'dan Bu Yana Yanınızdayız</h2>
+        <p>Aykut Giyim olarak 1990 yılından bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Modayı takip eden, kaliteden ödün vermeyen müşterilerimiz için en özel tasarımları bir araya getiriyoruz.</p>
+        <br>
+        <p>Her sezon yenilenen koleksiyonumuzla trendleri yakından takip ediyor, uygun fiyat politikamızla kaliteyi herkese ulaştırmayı hedefliyoruz.</p>
+      </div>
+      <div class="hikaye-resim">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Mağaza">
+      </div>
+    </div>
+  </section>
+  <section class="istatistik">
+    <div class="istatistik-grid">
+      <div><h3>35+</h3><p>Yıllık Deneyim</p></div>
+      <div><h3>10K+</h3><p>Mutlu Müşteri</p></div>
+      <div><h3>500+</h3><p>Ürün Çeşidi</p></div>
+      <div><h3>4.9★</h3><p>Müşteri Puanı</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== İLETİŞİM ===================== -->
+<div id="sayfa-iletisim" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>İletişim</h1>
+  </div>
+  <section class="iletisim-bolum">
+    <div class="iletisim-grid">
+      <div class="iletisim-bilgi">
+        <h3>Bize Ulaşın</h3>
+        <div class="iletisim-satir">📍 <span>Bursa, Türkiye</span></div>
+        <div class="iletisim-satir">📞 <span>05384602192</span></div>
+        <div class="iletisim-satir">✉️ <span>oktyaykt7@gmail.com</span></div>
+        <div class="iletisim-satir">📱 <span>WhatsApp ile yazın</span></div>
+        <a href="https://wa.me/905384602192" class="whatsapp-btn" target="_blank">WhatsApp ile Yaz ✓</a>
+      </div>
+      <div class="iletisim-form">
+        <h3>Mesaj Gönderin</h3>
+        <input type="text" placeholder="Ad Soyad">
+        <input type="email" placeholder="E-posta">
+        <textarea placeholder="Mesajınız..."></textarea>
+        <button onclick="mesajGonder()">Gönder</button>
+        <div class="basarili" id="basarili">✅ Mesajınız gönderildi!</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== KARGO & İADE ===================== -->
+<div id="sayfa-kargo" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>Kargo & İade</h1>
+  </div>
+  <section class="bolum">
+    <div class="bilgi-grid">
+      <div class="bilgi-kart">
+        <div class="bilgi-ikon">🚚</div>
+        <h3>Kargo Bilgileri</h3>
+        <ul>
+          <li>500 TL üzeri siparişlerde ücretsiz kargo</li>
+          <li>500 TL altı siparişlerde 49 TL kargo ücreti</li>
+          <li>Siparişler 1-3 iş günü içinde kargoya verilir</li>
+          <li>Tahmini teslimat süresi 2-4 iş günüdür</li>
+          <li>Kargo takip numarası SMS ile iletilir</li>
+        </ul>
+      </div>
+      <div class="bilgi-kart">
+        <div class="bilgi-ikon">↩️</div>
+        <h3>İade Koşulları</h3>
+        <ul>
+          <li>Ürün tesliminden itibaren 14 gün içinde iade</li>
+          <li>Ürünler kullanılmamış ve etiketli olmalıdır</li>
+          <li>İade kargo ücreti müşteriye aittir</li>
+          <li>Para iadesi 3-5 iş günü içinde yapılır</li>
+          <li>İndirimli ürünlerde iade kabul edilmez</li>
+        </ul>
+      </div>
+      <div class="bilgi-kart">
+        <div class="bilgi-ikon">💳</div>
+        <h3>Ödeme Seçenekleri</h3>
+        <ul>
+          <li>Kapıda ödeme (nakit veya kart)</li>
+          <li>Havale / EFT</li>
+          <li>Kredi kartı ile online ödeme</li>
+          <li>3'e kadar taksit imkanı</li>
+        </ul>
+      </div>
+      <div class="bilgi-kart">
+        <div class="bilgi-ikon">📦</div>
+        <h3>Sipariş Takibi</h3>
+        <ul>
+          <li>Sipariş onayı e-posta ile bildirilir</li>
+          <li>Kargo takip numarası SMS ile gönderilir</li>
+          <li>WhatsApp üzerinden destek alabilirsiniz</li>
+          <li>Sorularınız için bize ulaşın</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== HESABIM ===================== -->
+<div id="sayfa-sepet" class="sayfa">
+  <div class="sayfa-baslik-bolum">
+    <h1>Sepetim</h1>
+  </div>
+  <section class="bolum">
+    <div class="sepet-bos" id="sepet-bos">
+      <p>🛒</p>
+      <h3>Sepetiniz boş</h3>
+      <button onclick="sayfaGoster('urunler')">Alışverişe Başla</button>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-icerik">
+    <div class="footer-logo">AYKUT GİYİM</div>
+    <p>Özgün tasarım, yüksek kalite</p>
+    <div class="footer-linkler">
+      <a href="#" onclick="sayfaGoster('anasayfa')">Ana Sayfa</a>
+      <a href="#" onclick="sayfaGoster('urunler')">Ürünler</a>
+      <a href="#" onclick="sayfaGoster('kampanyalar')">Kampanyalar</a>
+      <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
+      <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
+      <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
+    </div>
+    <p class="footer-alt">© 2026 Aykut Giyim. Tüm hakları saklıdır.</p>
+    <p class="footer-alt">📍 Bursa &nbsp;|&nbsp; 📞 05384602192 &nbsp;|&nbsp; ✉️ oktyaykt7@gmail.com</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Butonu -->
+<a href="https://wa.me/905384602192" class="whatsapp-sabit" target="_blank">💬</a>
+
+<!-- Bildirim -->
+<div class="bildirim" id="bildirim">🛒 Ürün sepete eklendi!</div>
