@@ -30,18 +30,19 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 .kategori-menu a:hover { color: #c8a96e; }
 .sayfa { display: none; }
 .aktif-sayfa { display: block; }
-.hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
-.hero-slider { position: absolute; inset: 0; }
-.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }
+
+/* HERO SLIDER */
+.hero { height: 90vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center top; opacity: 0; transition: opacity 2s ease; }
 .hero-slide.aktif { opacity: 1; }
-.hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; object-fit: cover; }
-.hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
-.hero-icerik { position: relative; color: #fff; z-index: 1; }
+.hero-slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.hero-icerik { position: relative; color: #fff; z-index: 10; }
 .hero-alt { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; color: #c8a96e; }
 .hero-icerik h1 { font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1.2; margin-bottom: 20px; }
 .hero-aciklama { font-size: 16px; color: #ddd; margin-bottom: 32px; }
 .hero-icerik button { background: #fff; color: #1a1a1a; border: none; padding: 16px 48px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
 .hero-icerik button:hover { background: #c8a96e; color: #fff; }
+
 .kategori-bolum { padding: 60px 40px; }
 .kategori-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1200px; margin: 0 auto; }
 .kategori-kart { position: relative; overflow: hidden; cursor: pointer; height: 300px; }
@@ -167,9 +168,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
 </div>
 
 <header>
-  <div class="header-sol">
-    <button class="menu-btn" onclick="menuAc()">☰</button>
-  </div>
+  <div class="header-sol"><button class="menu-btn" onclick="menuAc()">☰</button></div>
   <div class="logo">AYKUT GİYİM</div>
   <div class="header-sag">
     <button class="ikon-btn" onclick="aramaAc()">🔍</button>
@@ -207,16 +206,12 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
 </div>
 
 <div id="sayfa-anasayfa" class="sayfa aktif-sayfa">
-  <div class="hero" id="hero">
-  <div class="hero-slider">
-    <div class="hero-slide aktif" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400')"></div>
-  </div>
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-modeling-a-short-black-dress-42702-large.mp4" type="video/mp4">
-  </video>
+
+  <div class="hero">
+    <div class="hero-slide aktif" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80')"></div>
     <div class="hero-icerik">
       <p class="hero-alt">Yeni Sezon 2026</p>
       <h1>Stilini Taşı,<br>İz Bırak.</h1>
@@ -474,9 +469,7 @@ function filtrele(kategori, btn) {
   });
 }
 function favorilerAc() { alert('Favoriler özelliği yakında! 🤍'); }
-</script>
-</body>
-</html>
+
 // Hero Slider
 const heroSlides = document.querySelectorAll('.hero-slide');
 let heroIndex = 0;
@@ -484,4 +477,7 @@ setInterval(() => {
   heroSlides[heroIndex].classList.remove('aktif');
   heroIndex = (heroIndex + 1) % heroSlides.length;
   heroSlides[heroIndex].classList.add('aktif');
-}, 3000);
+}, 4000);
+</script>
+</body>
+</html>
