@@ -4,155 +4,953 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aykut Giyim</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --kahve: #3e2012;
+  --altin: #c8a96e;
+  --altin-acik: #e8d5b7;
+  --beyaz: #ffffff;
+  --krem: #fdf8f4;
+  --gri: #f5f5f5;
+  --yazi: #1a1a1a;
+  --yazi-acik: #666;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Lato', sans-serif; background: #fff; color: #1a1a1a; }
-.top-bar { background: #1a1a1a; color: #fff; display: flex; justify-content: center; gap: 40px; padding: 8px 20px; font-size: 12px; letter-spacing: 1px; flex-wrap: wrap; }
-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 200; }
-.logo { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 6px; color: #1a1a1a; }
-.header-sol, .header-sag { display: flex; align-items: center; gap: 12px; }
-.ikon-btn { background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px 8px; }
-.menu-btn { background: none; border: none; font-size: 22px; cursor: pointer; }
-.sepet-sayi { background: #1a1a1a; color: #fff; border-radius: 50%; font-size: 10px; padding: 1px 5px; margin-left: 2px; }
-.arama-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; background: #fff; padding: 30px 40px; z-index: 300; border-bottom: 1px solid #eee; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--beyaz);
+  color: var(--yazi);
+  overflow-x: hidden;
+}
+
+/* ========= ANIMASYONLAR ========= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========= TOP BAR ========= */
+.top-bar {
+  background: var(--kahve);
+  color: var(--altin-acik);
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 9px 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.top-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+.top-bar span:hover { color: var(--altin); }
+
+/* ========= HEADER ========= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  border-bottom: 1px solid #f0ebe5;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  z-index: 200;
+  transition: box-shadow 0.3s;
+}
+header.scrolled {
+  box-shadow: 0 2px 20px rgba(62,32,18,0.08);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  letter-spacing: 6px;
+  color: var(--kahve);
+  position: relative;
+}
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--altin);
+  transition: width 0.4s ease;
+}
+.logo:hover::after { width: 100%; }
+
+.header-sol, .header-sag { display: flex; align-items: center; gap: 8px; }
+
+.ikon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.2s;
+  position: relative;
+}
+.ikon-btn:hover {
+  background: var(--krem);
+  transform: scale(1.1);
+}
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+  transition: transform 0.3s;
+}
+.menu-btn:hover { transform: rotate(90deg); }
+
+.sepet-sayi {
+  background: var(--altin);
+  color: var(--beyaz);
+  border-radius: 50%;
+  font-size: 10px;
+  padding: 2px 5px;
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+/* ========= ARAMA ========= */
+.arama-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.98);
+  padding: 40px;
+  z-index: 300;
+  border-bottom: 2px solid var(--altin);
+  animation: fadeInUp 0.3s ease;
+}
 .arama-overlay.acik { display: block; }
-.arama-kutu { display: flex; max-width: 600px; margin: 0 auto; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; }
-.arama-kutu input { flex: 1; border: none; outline: none; font-size: 20px; font-family: 'Playfair Display', serif; }
-.arama-kutu button { background: none; border: none; font-size: 20px; cursor: pointer; }
-.mobil-menu { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #fff; z-index: 400; padding: 60px 30px; transition: left 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.1); }
+.arama-kutu {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 2px solid var(--kahve);
+  padding-bottom: 12px;
+}
+.arama-kutu input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-family: 'Playfair Display', serif;
+  color: var(--kahve);
+  background: transparent;
+}
+.arama-kutu input::placeholder { color: #ccc; }
+.arama-kutu button { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--kahve); }
+
+/* ========= MOBİL MENÜ ========= */
+.mobil-menu {
+  position: fixed;
+  top: 0; left: -320px;
+  width: 300px;
+  height: 100%;
+  background: var(--beyaz);
+  z-index: 400;
+  padding: 70px 36px;
+  transition: left 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 4px 0 30px rgba(0,0,0,0.12);
+}
 .mobil-menu.acik { left: 0; }
-.mobil-menu nav { display: flex; flex-direction: column; gap: 24px; }
-.mobil-menu nav a { text-decoration: none; color: #1a1a1a; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 16px; }
-.kapat-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 22px; cursor: pointer; }
-.kategori-menu { display: flex; justify-content: center; gap: 32px; padding: 12px; border-bottom: 1px solid #eee; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; flex-wrap: wrap; }
-.kategori-menu a { text-decoration: none; color: #1a1a1a; transition: color 0.3s; }
-.kategori-menu a:hover { color: #c8a96e; }
+.mobil-menu nav { display: flex; flex-direction: column; gap: 0; }
+.mobil-menu nav a {
+  text-decoration: none;
+  color: var(--kahve);
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 0;
+  border-bottom: 1px solid #f0ebe5;
+  transition: color 0.3s, padding-left 0.3s;
+  display: block;
+}
+.mobil-menu nav a:hover { color: var(--altin); padding-left: 8px; }
+.kapat-btn {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--kahve);
+  transition: transform 0.3s;
+}
+.kapat-btn:hover { transform: rotate(90deg); }
+
+/* ========= KATEGORİ MENÜ ========= */
+.kategori-menu {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  padding: 14px;
+  border-bottom: 1px solid #f0ebe5;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  background: var(--beyaz);
+}
+.kategori-menu a {
+  text-decoration: none;
+  color: var(--yazi);
+  padding-bottom: 2px;
+  position: relative;
+  transition: color 0.3s;
+}
+.kategori-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--altin);
+  transition: width 0.3s ease;
+}
+.kategori-menu a:hover { color: var(--altin); }
+.kategori-menu a:hover::after { width: 100%; }
+
+/* ========= SAYFALAR ========= */
 .sayfa { display: none; }
-.aktif-sayfa { display: block; }
-.hero { height: 90vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center top; opacity: 0; transition: opacity 2s ease; }
+.aktif-sayfa { display: block; animation: fadeIn 0.5s ease; }
+
+/* ========= HERO ========= */
+.hero {
+  height: 92vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  transform: scale(1.05);
+  animation: kenburns 8s ease infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1.0); }
+  to { transform: scale(1.08); }
+}
 .hero-slide.aktif { opacity: 1; }
-.hero-slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
-.hero-icerik { position: relative; color: #fff; z-index: 10; padding: 0 20px; }
-.hero-alt { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; color: #c8a96e; }
-.hero-icerik h1 { font-family: 'Playfair Display', serif; font-size: 52px; line-height: 1.4; margin-bottom: 24px; font-weight: 400; font-style: italic; letter-spacing: 2px; }
-.hero-aciklama { font-size: 15px; color: #ddd; margin-bottom: 36px; letter-spacing: 1px; }
-.hero-icerik button { background: #fff; color: #1a1a1a; border: none; padding: 16px 48px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-.hero-icerik button:hover { background: #c8a96e; color: #fff; }
-.kategori-bolum { padding: 60px 40px; }
-.kategori-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1200px; margin: 0 auto; }
-.kategori-kart { position: relative; overflow: hidden; cursor: pointer; height: 300px; }
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,10,5,0.2) 0%,
+    rgba(20,10,5,0.5) 50%,
+    rgba(20,10,5,0.7) 100%
+  );
+}
+.hero-icerik {
+  position: relative;
+  color: var(--beyaz);
+  z-index: 10;
+  padding: 0 24px;
+  max-width: 800px;
+}
+.hero-alt {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--altin);
+  animation: fadeInUp 1s ease 0.3s both;
+}
+.hero-icerik h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  line-height: 1.25;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 1px;
+  animation: fadeInUp 1s ease 0.6s both;
+}
+.hero-aciklama {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 300;
+  animation: fadeInUp 1s ease 0.9s both;
+}
+.hero-btn {
+  background: transparent;
+  color: var(--beyaz);
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 16px 52px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease 1.2s both;
+}
+.hero-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--altin);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+.hero-btn:hover {
+  border-color: var(--altin);
+  color: var(--beyaz);
+}
+.hero-btn:hover::before { transform: translateX(0); }
+
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.hero-dot.aktif {
+  background: var(--altin);
+  width: 24px;
+  border-radius: 3px;
+  border-color: var(--altin);
+}
+
+/* ========= KATEGORİ GRID ========= */
+.kategori-bolum { padding: 80px 48px; }
+.kategori-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.kategori-kart {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  height: 300px;
+}
 .kategori-kart.buyuk { grid-row: span 2; height: 100%; }
-.kategori-kart img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.kategori-kart:hover img { transform: scale(1.05); }
-.kategori-yazi { position: absolute; bottom: 20px; left: 20px; color: #fff; }
-.kategori-yazi p { font-size: 10px; letter-spacing: 2px; color: #c8a96e; margin-bottom: 4px; }
-.kategori-yazi h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 4px; }
-.kategori-yazi span { font-size: 12px; color: #ddd; }
-.bolum { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
-.bolum-baslik { font-family: 'Playfair Display', serif; font-size: 32px; text-align: center; margin-bottom: 40px; letter-spacing: 2px; }
-.bolum-baslik::after { content: ''; display: block; width: 50px; height: 2px; background: #c8a96e; margin: 12px auto 0; }
-.urun-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.urun-grid.genis { padding: 40px; max-width: 1200px; margin: 0 auto; }
-.urun-kart { position: relative; }
-.urun-resim { position: relative; overflow: hidden; height: 360px; margin-bottom: 12px; }
-.urun-resim img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-.urun-kart:hover .urun-resim img { transform: scale(1.05); }
-.hizli-ekle { position: absolute; bottom: -50px; left: 0; right: 0; background: rgba(26,26,26,0.9); color: #fff; border: none; padding: 14px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: bottom 0.3s ease; }
+.kategori-kart img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.kategori-kart::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20,10,5,0.6) 0%, transparent 60%);
+  transition: opacity 0.4s;
+}
+.kategori-kart:hover img { transform: scale(1.08); }
+.kategori-yazi {
+  position: absolute;
+  bottom: 24px; left: 24px;
+  color: var(--beyaz);
+  z-index: 2;
+}
+.kategori-yazi p {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--altin);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.kategori-yazi h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 8px;
+  transition: transform 0.3s;
+}
+.kategori-kart:hover .kategori-yazi h3 { transform: translateX(6px); }
+.kategori-yazi span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+.kategori-kart:hover .kategori-yazi span { gap: 12px; }
+
+/* ========= BÖLÜM ========= */
+.bolum { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+.bolum-baslik {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 1px;
+  color: var(--kahve);
+  font-style: italic;
+}
+.bolum-baslik::after {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--altin);
+  margin: 14px auto 0;
+}
+
+/* ========= ÜRÜN GRID ========= */
+.urun-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; }
+.urun-grid.genis { padding: 48px; max-width: 1200px; margin: 0 auto; }
+.urun-kart {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.urun-kart:hover { transform: translateY(-4px); }
+.urun-resim {
+  position: relative;
+  overflow: hidden;
+  height: 380px;
+  margin-bottom: 14px;
+  background: var(--gri);
+}
+.urun-resim img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.urun-kart:hover .urun-resim img { transform: scale(1.06); }
+.hizli-ekle {
+  position: absolute;
+  bottom: -56px; left: 0; right: 0;
+  background: rgba(62,32,18,0.92);
+  color: var(--beyaz);
+  border: none;
+  padding: 16px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1);
+  font-family: 'Lato', sans-serif;
+}
 .urun-kart:hover .hizli-ekle { bottom: 0; }
-.urun-kart h3 { font-size: 14px; letter-spacing: 1px; margin-bottom: 6px; }
-.urun-kart p { color: #666; font-size: 14px; }
-.indirim-etiket { position: absolute; top: 12px; left: 12px; background: #c8a96e; color: #fff; padding: 4px 8px; font-size: 11px; z-index: 1; }
-.eski-fiyat { text-decoration: line-through; color: #aaa; margin-right: 6px; font-size: 13px; }
-.yeni-fiyat { color: #1a1a1a; font-weight: 600; }
-.tumu-btn { background: #1a1a1a; color: #fff; border: none; padding: 14px 48px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-.tumu-btn:hover { background: #c8a96e; }
-.istatistik { background: #1a1a1a; padding: 60px 40px; }
-.istatistik-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; text-align: center; color: #fff; }
-.istatistik-grid h3 { font-family: 'Playfair Display', serif; font-size: 36px; color: #c8a96e; margin-bottom: 8px; }
-.istatistik-grid p { font-size: 12px; letter-spacing: 2px; color: #aaa; text-transform: uppercase; }
-.hikaye { padding: 80px 40px; background: #fdf8f4; }
-.hikaye-icerik { display: flex; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+.hizli-ekle:hover { background: var(--altin); }
+.urun-kart h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  color: var(--kahve);
+  font-weight: 400;
+}
+.urun-kart p { color: var(--yazi-acik); font-size: 14px; }
+
+.indirim-etiket {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: var(--altin);
+  color: var(--beyaz);
+  padding: 4px 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  z-index: 1;
+  font-weight: 600;
+}
+.eski-fiyat {
+  text-decoration: line-through;
+  color: #bbb;
+  margin-right: 8px;
+  font-size: 13px;
+}
+.yeni-fiyat {
+  color: var(--kahve);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.tumu-btn {
+  background: transparent;
+  color: var(--kahve);
+  border: 1px solid var(--kahve);
+  padding: 14px 52px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+.tumu-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--kahve);
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+.tumu-btn:hover { color: var(--beyaz); }
+.tumu-btn:hover::before { transform: translateY(0); }
+
+/* ========= İSTATİSTİK ========= */
+.istatistik { background: var(--kahve); padding: 72px 48px; }
+.istatistik-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--beyaz);
+}
+.istatistik-grid h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: var(--altin);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.istatistik-grid p {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+/* ========= HİKAYE ========= */
+.hikaye { padding: 100px 48px; background: var(--krem); }
+.hikaye-icerik {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
 .hikaye-yazi { flex: 1; min-width: 280px; }
-.ust-yazi { font-size: 11px; letter-spacing: 3px; color: #c8a96e; text-transform: uppercase; margin-bottom: 16px; }
-.hikaye-yazi h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 20px; line-height: 1.4; }
-.hikaye-yazi p { color: #666; line-height: 1.8; font-size: 15px; }
-.hikaye-yazi button { margin-top: 24px; background: #1a1a1a; color: #fff; border: none; padding: 14px 36px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-.hikaye-yazi button:hover { background: #c8a96e; }
-.hikaye-resim { flex: 1; min-width: 280px; }
-.hikaye-resim img { width: 100%; height: 480px; object-fit: cover; }
-.yorumlar { background: #fafafa; padding: 60px 40px; }
-.yorum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
-.yorum-kart { background: #fff; padding: 32px; border: 1px solid #eee; }
-.yildiz { color: #c8a96e; font-size: 16px; margin-bottom: 12px; }
-.yorum-kart p { color: #555; line-height: 1.7; font-size: 14px; }
-.yorum-isim { margin-top: 16px; font-size: 12px; letter-spacing: 1px; color: #999; }
-.sayfa-baslik-bolum { background: #fdf8f4; text-align: center; padding: 60px 20px; border-bottom: 1px solid #eee; }
-.sayfa-baslik-bolum h1 { font-family: 'Playfair Display', serif; font-size: 42px; letter-spacing: 4px; }
-.filtre-bar { display: flex; justify-content: center; gap: 12px; padding: 30px 20px 0; flex-wrap: wrap; }
-.filtre-btn { background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a; padding: 8px 24px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-.filtre-btn:hover, .aktif-filtre { background: #1a1a1a; color: #fff; }
-.kampanya-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
-.kampanya-kart { background: #fdf8f4; border: 1px solid #eee; padding: 40px; text-align: center; transition: transform 0.3s; }
-.kampanya-kart:hover { transform: translateY(-4px); }
-.kampanya-ikon { font-size: 40px; margin-bottom: 16px; }
-.kampanya-kart h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 12px; }
-.kampanya-kart p { color: #666; margin-bottom: 20px; line-height: 1.6; }
-.kampanya-kart button { background: #1a1a1a; color: #fff; border: none; padding: 10px 28px; font-size: 12px; letter-spacing: 2px; cursor: pointer; transition: background 0.3s; }
-.kampanya-kart button:hover { background: #c8a96e; }
-.iletisim-bolum { padding: 60px 40px; max-width: 1000px; margin: 0 auto; }
-.iletisim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-.iletisim-bilgi h3, .iletisim-form h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 24px; }
-.iletisim-satir { display: flex; gap: 12px; margin-bottom: 16px; color: #555; font-size: 15px; }
-.whatsapp-btn { display: inline-block; margin-top: 20px; background: #25d366; color: #fff; text-decoration: none; padding: 12px 28px; font-size: 13px; letter-spacing: 1px; border-radius: 4px; transition: background 0.3s; }
-.whatsapp-btn:hover { background: #1da851; }
-.iletisim-form { display: flex; flex-direction: column; gap: 14px; }
-.iletisim-form input, .iletisim-form textarea { padding: 12px 16px; border: 1px solid #ddd; outline: none; font-size: 14px; font-family: 'Lato', sans-serif; transition: border 0.3s; }
-.iletisim-form input:focus, .iletisim-form textarea:focus { border-color: #1a1a1a; }
-.iletisim-form textarea { height: 120px; resize: none; }
-.iletisim-form button { background: #1a1a1a; color: #fff; border: none; padding: 14px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-.iletisim-form button:hover { background: #c8a96e; }
-.basarili { color: #c8a96e; font-size: 14px; display: none; text-align: center; }
-.bilgi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
-.bilgi-kart { background: #fdf8f4; border: 1px solid #eee; padding: 36px; }
-.bilgi-ikon { font-size: 36px; margin-bottom: 16px; }
-.bilgi-kart h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 16px; }
+.ust-yazi {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--altin);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ust-yazi::before {
+  content: '';
+  display: inline-block;
+  width: 30px; height: 1px;
+  background: var(--altin);
+}
+.hikaye-yazi h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  color: var(--kahve);
+  font-style: italic;
+}
+.hikaye-yazi p { color: var(--yazi-acik); line-height: 1.9; font-size: 15px; font-weight: 300; }
+.hikaye-btn {
+  margin-top: 28px;
+  background: var(--kahve);
+  color: var(--beyaz);
+  border: none;
+  padding: 14px 36px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-family: 'Lato', sans-serif;
+}
+.hikaye-btn:hover { background: var(--altin); transform: translateY(-2px); }
+.hikaye-resim { flex: 1; min-width: 280px; position: relative; }
+.hikaye-resim img {
+  width: 100%; height: 500px;
+  object-fit: cover;
+  display: block;
+}
+.hikaye-resim::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  right: 16px; bottom: 16px;
+  border: 1px solid var(--altin);
+  z-index: 0;
+}
+.hikaye-resim img { position: relative; z-index: 1; }
+
+/* ========= YORUMLAR ========= */
+.yorumlar { padding: 100px 48px; background: var(--beyaz); }
+.yorum-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.yorum-kart {
+  background: var(--krem);
+  padding: 36px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+}
+.yorum-kart::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  color: var(--altin);
+  opacity: 0.3;
+  position: absolute;
+  top: 10px; left: 24px;
+  line-height: 1;
+}
+.yorum-kart:hover { border-color: var(--altin); transform: translateY(-4px); }
+.yildiz { color: var(--altin); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+.yorum-kart p { color: #555; line-height: 1.8; font-size: 14px; font-style: italic; font-weight: 300; }
+.yorum-isim { margin-top: 20px; font-size: 11px; letter-spacing: 2px; color: var(--kahve); text-transform: uppercase; font-weight: 600; }
+
+/* ========= SAYFA BAŞLIK ========= */
+.sayfa-baslik-bolum {
+  background: var(--krem);
+  text-align: center;
+  padding: 72px 20px;
+  border-bottom: 1px solid #f0ebe5;
+  position: relative;
+  overflow: hidden;
+}
+.sayfa-baslik-bolum::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px; height: 40px;
+  background: var(--altin);
+}
+.sayfa-baslik-bolum h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  letter-spacing: 3px;
+  color: var(--kahve);
+  font-style: italic;
+}
+
+/* ========= FİLTRE ========= */
+.filtre-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 36px 20px 0;
+  flex-wrap: wrap;
+}
+.filtre-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: var(--yazi-acik);
+  padding: 8px 24px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Lato', sans-serif;
+}
+.filtre-btn:hover { border-color: var(--kahve); color: var(--kahve); }
+.aktif-filtre { background: var(--kahve); color: var(--beyaz); border-color: var(--kahve); }
+
+/* ========= KAMPANYA ========= */
+.kampanya-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.kampanya-kart {
+  background: var(--krem);
+  padding: 48px 40px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-bottom: 2px solid transparent;
+}
+.kampanya-kart:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(62,32,18,0.1); border-color: var(--altin); }
+.kampanya-ikon { font-size: 36px; margin-bottom: 20px; }
+.kampanya-kart h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 12px; color: var(--kahve); }
+.kampanya-kart p { color: var(--yazi-acik); margin-bottom: 24px; line-height: 1.7; font-size: 14px; }
+.kampanya-btn {
+  background: var(--kahve);
+  color: var(--beyaz);
+  border: none;
+  padding: 12px 32px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: 'Lato', sans-serif;
+}
+.kampanya-btn:hover { background: var(--altin); }
+
+/* ========= İLETİŞİM ========= */
+.iletisim-bolum { padding: 80px 48px; max-width: 1000px; margin: 0 auto; }
+.iletisim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+.iletisim-bilgi h3, .iletisim-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin-bottom: 28px;
+  color: var(--kahve);
+  font-style: italic;
+}
+.iletisim-satir { display: flex; gap: 14px; margin-bottom: 18px; color: var(--yazi-acik); font-size: 14px; align-items: flex-start; }
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  background: #25d366;
+  color: var(--beyaz);
+  text-decoration: none;
+  padding: 13px 28px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.2s;
+  font-family: 'Lato', sans-serif;
+}
+.whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); }
+.iletisim-form { display: flex; flex-direction: column; gap: 16px; }
+.iletisim-form input, .iletisim-form textarea {
+  padding: 13px 16px;
+  border: 1px solid #e8e0d8;
+  outline: none;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  transition: border-color 0.3s;
+  background: var(--krem);
+  color: var(--yazi);
+}
+.iletisim-form input:focus, .iletisim-form textarea:focus { border-color: var(--altin); }
+.iletisim-form textarea { height: 130px; resize: none; }
+.iletisim-form button {
+  background: var(--kahve);
+  color: var(--beyaz);
+  border: none;
+  padding: 15px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: 'Lato', sans-serif;
+}
+.iletisim-form button:hover { background: var(--altin); }
+.basarili { color: var(--altin); font-size: 13px; display: none; text-align: center; padding: 8px; }
+
+/* ========= KARGO ========= */
+.bilgi-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.bilgi-kart {
+  background: var(--krem);
+  padding: 40px;
+  border-left: 3px solid var(--altin);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.bilgi-kart:hover { transform: translateX(4px); box-shadow: 4px 0 20px rgba(200,169,110,0.15); }
+.bilgi-ikon { font-size: 32px; margin-bottom: 16px; }
+.bilgi-kart h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 16px; color: var(--kahve); }
 .bilgi-kart ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.bilgi-kart ul li { color: #555; font-size: 14px; padding-left: 16px; position: relative; line-height: 1.5; }
-.bilgi-kart ul li::before { content: '—'; position: absolute; left: 0; color: #c8a96e; }
-.sepet-bos { text-align: center; padding: 80px 20px; }
-.sepet-bos p:first-child { font-size: 60px; margin-bottom: 16px; }
-.sepet-bos h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 24px; color: #999; }
-.sepet-bos button { background: #1a1a1a; color: #fff; border: none; padding: 14px 40px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
-.sepet-bos button:hover { background: #c8a96e; }
-footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: center; }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 6px; margin-bottom: 12px; }
-.footer-linkler { display: flex; justify-content: center; gap: 28px; margin-bottom: 32px; flex-wrap: wrap; }
-.footer-linkler a { color: #aaa; text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
-.footer-linkler a:hover { color: #c8a96e; }
-.footer-alt { color: #555; font-size: 12px; margin-top: 8px; }
-.whatsapp-sabit { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.3s; z-index: 500; }
-.whatsapp-sabit:hover { transform: scale(1.1); }
-.bildirim { position: fixed; bottom: 100px; right: 30px; background: #1a1a1a; color: #fff; padding: 14px 24px; border-left: 4px solid #c8a96e; font-size: 13px; opacity: 0; transform: translateY(20px); transition: all 0.4s; pointer-events: none; z-index: 500; }
+.bilgi-kart ul li { color: var(--yazi-acik); font-size: 14px; padding-left: 16px; position: relative; line-height: 1.6; }
+.bilgi-kart ul li::before { content: '—'; position: absolute; left: 0; color: var(--altin); }
+
+/* ========= SEPET ========= */
+.sepet-bos { text-align: center; padding: 100px 20px; }
+.sepet-bos p:first-child { font-size: 56px; margin-bottom: 20px; }
+.sepet-bos h3 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 12px; color: #ccc; font-style: italic; }
+.sepet-bos p.alt { color: #bbb; margin-bottom: 32px; font-size: 14px; }
+.sepet-bos button {
+  background: var(--kahve);
+  color: var(--beyaz);
+  border: none;
+  padding: 14px 44px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: 'Lato', sans-serif;
+}
+.sepet-bos button:hover { background: var(--altin); }
+
+/* ========= FOOTER ========= */
+footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
+.footer-ust {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  letter-spacing: 6px;
+  margin-bottom: 16px;
+  color: var(--beyaz);
+}
+.footer-aciklama { color: rgba(255,255,255,0.4); font-size: 13px; line-height: 1.8; font-weight: 300; }
+.footer-baslik { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--altin); margin-bottom: 20px; }
+.footer-linkler { display: flex; flex-direction: column; gap: 12px; }
+.footer-linkler a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s, padding-left 0.3s;
+}
+.footer-linkler a:hover { color: var(--altin); padding-left: 4px; }
+.footer-alt {
+  text-align: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* ========= WHATSAPP ========= */
+.whatsapp-sabit {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  background: #25d366;
+  color: var(--beyaz);
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  z-index: 500;
+}
+.whatsapp-sabit:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,0.5); }
+
+/* ========= BİLDİRİM ========= */
+.bildirim {
+  position: fixed;
+  bottom: 100px; right: 32px;
+  background: var(--kahve);
+  color: var(--beyaz);
+  padding: 14px 24px;
+  border-left: 3px solid var(--altin);
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+  z-index: 500;
+  letter-spacing: 0.5px;
+}
 .bildirim.goster { opacity: 1; transform: translateY(0); }
+
+/* ========= MOBİL ========= */
 @media (max-width: 768px) {
   header { padding: 14px 20px; }
   .logo { font-size: 16px; letter-spacing: 3px; }
   .kategori-menu { display: none; }
-  .hero-icerik h1 { font-size: 42px; }
-  .hero { height: 70vh; }
+  .hero-icerik h1 { font-size: 36px; }
+  .hero { height: 75vh; }
+  .kategori-bolum { padding: 48px 20px; }
   .kategori-grid { grid-template-columns: 1fr 1fr; }
   .kategori-kart.buyuk { grid-row: span 1; height: 300px; }
-  .urun-grid { grid-template-columns: repeat(2, 1fr); }
-  .istatistik-grid { grid-template-columns: repeat(2, 1fr); }
+  .urun-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .istatistik-grid { grid-template-columns: repeat(2,1fr); }
   .yorum-grid { grid-template-columns: 1fr; }
   .kampanya-grid { grid-template-columns: 1fr; }
   .iletisim-grid { grid-template-columns: 1fr; }
   .bilgi-grid { grid-template-columns: 1fr; }
   .hikaye-icerik { gap: 40px; }
-  .bolum { padding: 40px 20px; }
-  .hikaye { padding: 40px 20px; }
+  .bolum { padding: 48px 20px; }
+  .hikaye { padding: 60px 20px; }
+  .footer-ust { grid-template-columns: 1fr; gap: 32px; }
+  .hikaye-resim::before { display: none; }
 }
 </style>
 </head>
@@ -164,7 +962,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
   <span>💳 Kapıda Ödeme İmkanı</span>
 </div>
 
-<header>
+<header id="header">
   <div class="header-sol"><button class="menu-btn" onclick="menuAc()">☰</button></div>
   <div class="logo">AYKUT GİYİM</div>
   <div class="header-sag">
@@ -176,7 +974,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
 
 <div class="arama-overlay" id="arama-overlay">
   <div class="arama-kutu">
-    <input type="text" placeholder="Ne aramıştınız?" id="arama-input">
+    <input type="text" placeholder="Aramak istediğiniz ürünü yazın..." id="arama-input">
     <button onclick="aramaKapat()">✕</button>
   </div>
 </div>
@@ -202,43 +1000,45 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
   <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
 </div>
 
+<!-- ANA SAYFA -->
 <div id="sayfa-anasayfa" class="sayfa aktif-sayfa">
 
   <div class="hero">
-    <div class="hero-slide aktif" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&q=80')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&q=80')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400&q=80')"></div>
-    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80')"></div>
+    <div class="hero-slide aktif" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80')"></div>
     <div class="hero-icerik">
       <p class="hero-alt">Yeni Sezon 2026</p>
       <h1>Sadelikte Şıklık,<br>Şıklıkta Sen.</h1>
-      <p class="hero-aciklama">Zamansız tasarımlar, güçlü detaylar. Sadece sana özel.</p>
-      <button onclick="sayfaGoster('urunler')">Koleksiyonu Keşfet</button>
+      <p class="hero-aciklama">Zamansız tasarımlar · Güçlü detaylar · Sadece sana özel</p>
+      <button class="hero-btn" onclick="sayfaGoster('urunler')">Koleksiyonu Keşfet</button>
     </div>
+    <div class="hero-dots" id="hero-dots"></div>
   </div>
 
-  <section class="kategori-bolum">
+  <section class="kategori-bolum reveal">
     <div class="kategori-grid">
       <div class="kategori-kart buyuk" onclick="sayfaGoster('urunler')">
         <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600" alt="Montlar">
-        <div class="kategori-yazi"><p>KOLEKSİYONUMUZDAN</p><h3>Montlar</h3><span>Keşfet →</span></div>
+        <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Montlar</h3><span>Keşfet →</span></div>
       </div>
       <div class="kategori-kart" onclick="sayfaGoster('urunler')">
         <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Elbiseler">
-        <div class="kategori-yazi"><p>KOLEKSİYONUMUZDAN</p><h3>Elbiseler</h3><span>Keşfet →</span></div>
+        <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Elbiseler</h3><span>Keşfet →</span></div>
       </div>
       <div class="kategori-kart" onclick="sayfaGoster('urunler')">
         <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Ceketler">
-        <div class="kategori-yazi"><p>KOLEKSİYONUMUZDAN</p><h3>Ceketler</h3><span>Keşfet →</span></div>
+        <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Ceketler</h3><span>Keşfet →</span></div>
       </div>
       <div class="kategori-kart" onclick="sayfaGoster('urunler')">
         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazaklar">
-        <div class="kategori-yazi"><p>KOLEKSİYONUMUZDAN</p><h3>Kazaklar</h3><span>Keşfet →</span></div>
+        <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Kazaklar</h3><span>Keşfet →</span></div>
       </div>
     </div>
   </section>
 
-  <section class="bolum">
+  <section class="bolum reveal">
     <h2 class="bolum-baslik">Yeni Gelenler</h2>
     <div class="urun-grid">
       <div class="urun-kart">
@@ -255,15 +1055,15 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
       </div>
       <div class="urun-kart">
         <div class="urun-resim"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Ceket"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
-        <h3>Deri Ceket</h3><p>1199 TL</p>
+        <h3>Deri Ceket</h3><p>1.199 TL</p>
       </div>
     </div>
-    <div style="text-align:center; margin-top:40px;">
+    <div style="text-align:center;margin-top:48px;">
       <button class="tumu-btn" onclick="sayfaGoster('urunler')">Tümünü Görüntüle</button>
     </div>
   </section>
 
-  <section class="istatistik">
+  <section class="istatistik reveal">
     <div class="istatistik-grid">
       <div><h3>35+</h3><p>Yıllık Deneyim</p></div>
       <div><h3>10K+</h3><p>Mutlu Müşteri</p></div>
@@ -272,13 +1072,13 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
     </div>
   </section>
 
-  <section class="hikaye">
+  <section class="hikaye reveal">
     <div class="hikaye-icerik">
       <div class="hikaye-yazi">
-        <p class="ust-yazi">BİZİM HİKAYEMİZ</p>
+        <p class="ust-yazi">Bizim Hikayemiz</p>
         <h2>Giyim, sadece bir aksesuar değil — bir ifade biçimi.</h2>
-        <p>Aykut Giyim olarak 1990'dan bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz.</p>
-        <button onclick="sayfaGoster('hakkimizda')">Hikayemizi Keşfet</button>
+        <p>Aykut Giyim olarak 1990'dan bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Her parçayı özenle seçiyor, sizi özel hissettirmek için çalışıyoruz.</p>
+        <button class="hikaye-btn" onclick="sayfaGoster('hakkimizda')">Hikayemizi Keşfet</button>
       </div>
       <div class="hikaye-resim">
         <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Mağaza">
@@ -286,18 +1086,19 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
     </div>
   </section>
 
-  <section class="yorumlar">
-    <div style="max-width:1100px; margin:0 auto; padding: 60px 40px;">
+  <section class="yorumlar reveal">
+    <div style="max-width:1100px;margin:0 auto;padding:0 48px;">
       <h2 class="bolum-baslik">Müşterilerimiz Diyor Ki</h2>
       <div class="yorum-grid">
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>"Kalitesi ve şıklığıyla beklentilerimin çok üzerinde."</p><p class="yorum-isim">Elif K. — İstanbul</p></div>
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>"Siparişim çok hızlı geldi, paketleme inanılmaz özenli."</p><p class="yorum-isim">Selin M. — Ankara</p></div>
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>"Hem şık hem kaliteli. Herkese tavsiye ederim!"</p><p class="yorum-isim">Zeynep A. — Bursa</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Kalitesi ve şıklığıyla beklentilerimin çok üzerinde. Her gün giyiyorum.</p><p class="yorum-isim">Elif K. — İstanbul</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Siparişim çok hızlı geldi, paketleme inanılmaz özenli yapılmış.</p><p class="yorum-isim">Selin M. — Ankara</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Hem şık hem kaliteli. Fiyat-performans açısından mükemmel.</p><p class="yorum-isim">Zeynep A. — Bursa</p></div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- ÜRÜNLER -->
 <div id="sayfa-urunler" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Tüm Ürünler</h1></div>
   <div class="filtre-bar">
@@ -314,7 +1115,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
     </div>
     <div class="urun-kart" data-kategori="elbise">
       <div class="urun-resim"><img src="https://images.unsplash.com/photo-1562137369-1a1a0bc66744?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
-      <h3>Şık Elbise</h3><p>1299 TL</p>
+      <h3>Şık Elbise</h3><p>1.299 TL</p>
     </div>
     <div class="urun-kart" data-kategori="ceket">
       <div class="urun-resim"><div class="indirim-etiket">%30</div><img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Blazer"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
@@ -322,7 +1123,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
     </div>
     <div class="urun-kart" data-kategori="ceket">
       <div class="urun-resim"><div class="indirim-etiket">%25</div><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Deri Ceket"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
-      <h3>Deri Ceket</h3><p><span class="eski-fiyat">1599 TL</span><span class="yeni-fiyat">1199 TL</span></p>
+      <h3>Deri Ceket</h3><p><span class="eski-fiyat">1.599 TL</span><span class="yeni-fiyat">1.199 TL</span></p>
     </div>
     <div class="urun-kart" data-kategori="kazak">
       <div class="urun-resim"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazak"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
@@ -330,31 +1131,33 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
     </div>
     <div class="urun-kart" data-kategori="mont">
       <div class="urun-resim"><div class="indirim-etiket">%40</div><img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400" alt="Mont"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
-      <h3>Kışlık Mont</h3><p><span class="eski-fiyat">1999 TL</span><span class="yeni-fiyat">1199 TL</span></p>
+      <h3>Kışlık Mont</h3><p><span class="eski-fiyat">1.999 TL</span><span class="yeni-fiyat">1.199 TL</span></p>
     </div>
   </div>
 </div>
 
+<!-- KAMPANYALAR -->
 <div id="sayfa-kampanyalar" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Kampanyalar</h1></div>
   <section class="bolum">
     <div class="kampanya-grid">
-      <div class="kampanya-kart"><div class="kampanya-ikon">🏷️</div><h3>Sezon Sonu İndirimi</h3><p>Seçili ürünlerde %40'a varan indirim!</p><button onclick="sayfaGoster('urunler')">Ürünlere Git</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">🚚</div><h3>Ücretsiz Kargo</h3><p>500 TL ve üzeri tüm siparişlerde!</p><button onclick="sayfaGoster('urunler')">Hemen Al</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">🎁</div><h3>2 Al 1 Öde</h3><p>Seçili kazak ve bluz ürünlerinde.</p><button onclick="sayfaGoster('urunler')">Keşfet</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">💳</div><h3>Kapıda Ödeme</h3><p>Tüm siparişlerde kapıda ödeme imkanı.</p><button onclick="sayfaGoster('urunler')">Alışverişe Başla</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🏷️</div><h3>Sezon Sonu İndirimi</h3><p>Seçili ürünlerde %40'a varan indirim fırsatı sizi bekliyor.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Ürünlere Git</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🚚</div><h3>Ücretsiz Kargo</h3><p>500 TL ve üzeri tüm siparişlerde ücretsiz kargo ayrıcalığı.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Hemen Al</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🎁</div><h3>2 Al 1 Öde</h3><p>Seçili kazak ve bluz ürünlerinde geçerli özel kampanya.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Keşfet</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">💳</div><h3>Kapıda Ödeme</h3><p>Tüm siparişlerde güvenli kapıda ödeme imkanı sunuyoruz.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Alışverişe Başla</button></div>
     </div>
   </section>
 </div>
 
+<!-- HAKKIMIZDA -->
 <div id="sayfa-hakkimizda" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Hakkımızda</h1></div>
   <section class="hikaye">
     <div class="hikaye-icerik">
       <div class="hikaye-yazi">
-        <p class="ust-yazi">BİZİM HİKAYEMİZ</p>
+        <p class="ust-yazi">Bizim Hikayemiz</p>
         <h2>1990'dan Bu Yana Yanınızdayız</h2>
-        <p>Aykut Giyim olarak 1990 yılından bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz.</p><br>
+        <p>Aykut Giyim olarak 1990 yılından bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Modayı takip eden, kaliteden ödün vermeyen müşterilerimiz için en özel tasarımları bir araya getiriyoruz.</p><br>
         <p>Her sezon yenilenen koleksiyonumuzla trendleri yakından takip ediyor, uygun fiyat politikamızla kaliteyi herkese ulaştırmayı hedefliyoruz.</p>
       </div>
       <div class="hikaye-resim"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Mağaza"></div>
@@ -370,6 +1173,7 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
   </section>
 </div>
 
+<!-- İLETİŞİM -->
 <div id="sayfa-iletisim" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>İletişim</h1></div>
   <section class="iletisim-bolum">
@@ -379,85 +1183,112 @@ footer { background: #1a1a1a; color: #fff; padding: 60px 40px; text-align: cente
         <div class="iletisim-satir">📍 <span>Bursa, Türkiye</span></div>
         <div class="iletisim-satir">📞 <span>05384602192</span></div>
         <div class="iletisim-satir">✉️ <span>oktyaykt7@gmail.com</span></div>
-        <a href="https://wa.me/905384602192" class="whatsapp-btn" target="_blank">WhatsApp ile Yaz ✓</a>
+        <a href="https://wa.me/905384602192" class="whatsapp-btn" target="_blank">💬 WhatsApp ile Yaz</a>
       </div>
       <div class="iletisim-form">
         <h3>Mesaj Gönderin</h3>
         <input type="text" placeholder="Ad Soyad">
-        <input type="email" placeholder="E-posta">
+        <input type="email" placeholder="E-posta Adresiniz">
         <textarea placeholder="Mesajınız..."></textarea>
         <button onclick="mesajGonder()">Gönder</button>
-        <div class="basarili" id="basarili">✅ Mesajınız gönderildi!</div>
+        <div class="basarili" id="basarili">✅ Mesajınız başarıyla gönderildi.</div>
       </div>
     </div>
   </section>
 </div>
 
+<!-- KARGO & İADE -->
 <div id="sayfa-kargo" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Kargo & İade</h1></div>
   <section class="bolum">
     <div class="bilgi-grid">
-      <div class="bilgi-kart"><div class="bilgi-ikon">🚚</div><h3>Kargo Bilgileri</h3><ul><li>500 TL üzeri ücretsiz kargo</li><li>500 TL altı 49 TL kargo ücreti</li><li>1-3 iş günü kargoya verilir</li><li>2-4 iş günü teslimat</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">↩️</div><h3>İade Koşulları</h3><ul><li>14 gün içinde iade hakkı</li><li>Ürünler kullanılmamış olmalı</li><li>İade kargo ücreti müşteriye ait</li><li>Para iadesi 3-5 iş günü</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">💳</div><h3>Ödeme Seçenekleri</h3><ul><li>Kapıda ödeme</li><li>Havale / EFT</li><li>Kredi kartı</li><li>3'e kadar taksit</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">📦</div><h3>Sipariş Takibi</h3><ul><li>E-posta ile sipariş onayı</li><li>SMS ile kargo takibi</li><li>WhatsApp destek</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">🚚</div><h3>Kargo Bilgileri</h3><ul><li>500 TL üzeri ücretsiz kargo</li><li>500 TL altı 49 TL kargo ücreti</li><li>1-3 iş günü içinde kargoya verilir</li><li>2-4 iş günü teslimat süresi</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">↩️</div><h3>İade Koşulları</h3><ul><li>Teslimden itibaren 14 gün iade hakkı</li><li>Ürünler kullanılmamış ve etiketli olmalı</li><li>İade kargo ücreti müşteriye aittir</li><li>Para iadesi 3-5 iş günü içinde yapılır</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">💳</div><h3>Ödeme Seçenekleri</h3><ul><li>Kapıda ödeme (nakit veya kart)</li><li>Havale / EFT</li><li>Kredi kartı ile online ödeme</li><li>3'e kadar taksit imkanı</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">📦</div><h3>Sipariş Takibi</h3><ul><li>Sipariş onayı e-posta ile bildirilir</li><li>Kargo takip numarası SMS ile gönderilir</li><li>WhatsApp üzerinden destek alabilirsiniz</li></ul></div>
     </div>
   </section>
 </div>
 
+<!-- SEPET -->
 <div id="sayfa-sepet" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Sepetim</h1></div>
   <section class="bolum">
     <div class="sepet-bos">
-      <p>🛒</p>
-      <h3>Sepetiniz boş</h3>
+      <p>🛍️</p>
+      <h3>Sepetiniz henüz boş</h3>
+      <p class="alt">Koleksiyonumuzu keşfedin, beğendiklerinizi sepete ekleyin.</p>
       <button onclick="sayfaGoster('urunler')">Alışverişe Başla</button>
     </div>
   </section>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-icerik">
-    <div class="footer-logo">AYKUT GİYİM</div>
-    <p style="color:#888; font-size:13px; margin-bottom:32px;">Özgün tasarım, yüksek kalite</p>
-    <div class="footer-linkler">
-      <a href="#" onclick="sayfaGoster('anasayfa')">Ana Sayfa</a>
-      <a href="#" onclick="sayfaGoster('urunler')">Ürünler</a>
-      <a href="#" onclick="sayfaGoster('kampanyalar')">Kampanyalar</a>
-      <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
-      <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
-      <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
+  <div class="footer-ust">
+    <div>
+      <div class="footer-logo">AYKUT GİYİM</div>
+      <p class="footer-aciklama">Bursa'dan Türkiye'ye, 1990'dan bu yana kaliteli kadın giyim. Özgün tasarım, yüksek kalite, uygun fiyat.</p>
     </div>
-    <p class="footer-alt">© 2026 Aykut Giyim. Tüm hakları saklıdır.</p>
-    <p class="footer-alt">📍 Bursa &nbsp;|&nbsp; 📞 05384602192 &nbsp;|&nbsp; ✉️ oktyaykt7@gmail.com</p>
+    <div>
+      <p class="footer-baslik">Sayfalar</p>
+      <div class="footer-linkler">
+        <a href="#" onclick="sayfaGoster('anasayfa')">Ana Sayfa</a>
+        <a href="#" onclick="sayfaGoster('urunler')">Ürünler</a>
+        <a href="#" onclick="sayfaGoster('kampanyalar')">Kampanyalar</a>
+        <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-baslik">Destek</p>
+      <div class="footer-linkler">
+        <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
+        <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
+        <a href="https://wa.me/905384602192" target="_blank">WhatsApp</a>
+      </div>
+    </div>
   </div>
+  <p class="footer-alt">© 2026 Aykut Giyim · Bursa · 05384602192 · oktyaykt7@gmail.com</p>
 </footer>
 
 <a href="https://wa.me/905384602192" class="whatsapp-sabit" target="_blank">💬</a>
 <div class="bildirim" id="bildirim">🛒 Ürün sepete eklendi!</div>
 
 <script>
+// Sayfa Geçişi
 function sayfaGoster(sayfa) {
   document.querySelectorAll('.sayfa').forEach(s => s.classList.remove('aktif-sayfa'));
   document.getElementById('sayfa-' + sayfa).classList.add('aktif-sayfa');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  initReveal();
 }
+
+// Menü
 function menuAc() { document.getElementById('mobil-menu').classList.add('acik'); }
 function menuKapat() { document.getElementById('mobil-menu').classList.remove('acik'); }
+
+// Arama
 function aramaAc() { document.getElementById('arama-overlay').classList.add('acik'); document.getElementById('arama-input').focus(); }
 function aramaKapat() { document.getElementById('arama-overlay').classList.remove('acik'); }
+
+// Sepet
 let sepetSayisi = 0;
 function sepeteEkle(btn) {
   sepetSayisi++;
   document.querySelector('.sepet-sayi').textContent = sepetSayisi;
   const bildirim = document.getElementById('bildirim');
   bildirim.classList.add('goster');
-  setTimeout(() => bildirim.classList.remove('goster'), 2500);
+  setTimeout(() => bildirim.classList.remove('goster'), 2800);
 }
+
+// İletişim
 function mesajGonder() {
-  document.getElementById('basarili').style.display = 'block';
-  setTimeout(() => { document.getElementById('basarili').style.display = 'none'; }, 3000);
+  const el = document.getElementById('basarili');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 3500);
 }
+
+// Filtre
 function filtrele(kategori, btn) {
   document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('aktif-filtre'));
   btn.classList.add('aktif-filtre');
@@ -465,14 +1296,54 @@ function filtrele(kategori, btn) {
     kart.style.display = (kategori === 'hepsi' || kart.dataset.kategori === kategori) ? 'block' : 'none';
   });
 }
-function favorilerAc() { alert('Favoriler özelliği yakında! 🤍'); }
+
+// Favoriler
+function favorilerAc() { alert('Favoriler özelliği yakında eklenecek! 🤍'); }
+
+// Hero Slider
 const heroSlides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('hero-dots');
 let heroIndex = 0;
-setInterval(() => {
+
+heroSlides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'hero-dot' + (i === 0 ? ' aktif' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+function goToSlide(index) {
   heroSlides[heroIndex].classList.remove('aktif');
-  heroIndex = (heroIndex + 1) % heroSlides.length;
+  document.querySelectorAll('.hero-dot')[heroIndex].classList.remove('aktif');
+  heroIndex = index;
   heroSlides[heroIndex].classList.add('aktif');
-}, 4000);
+  document.querySelectorAll('.hero-dot')[heroIndex].classList.add('aktif');
+}
+
+setInterval(() => {
+  goToSlide((heroIndex + 1) % heroSlides.length);
+}, 5000);
+
+// Scroll Reveal
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+}
+initReveal();
+
+// Header Scroll
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (window.scrollY > 50) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+});
 </script>
 </body>
 </html>
