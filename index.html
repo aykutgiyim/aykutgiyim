@@ -1210,6 +1210,204 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   </section>
 </div>
 
+  <!-- PROFİL -->
+<div id="sayfa-profil" class="sayfa">
+  <div class="sayfa-baslik-bolum"><h1>Profilim</h1></div>
+  <section class="profil-bolum">
+    <div class="profil-grid">
+
+      <!-- Sol Menü -->
+      <div class="profil-menu">
+        <div class="profil-avatar">
+          <div class="avatar-daire">👤</div>
+          <h3>Oktay Aykut</h3>
+          <p>oktyaykt7@gmail.com</p>
+        </div>
+        <nav class="profil-nav">
+          <a href="#" class="profil-nav-link aktif-profil" onclick="profilSekme('hesap', this)">👤 Hesap Bilgilerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('siparisler', this)">📦 Siparişlerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('adresler', this)">📍 Adreslerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('odeme', this)">💳 Ödeme Yöntemlerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('guvenlik', this)">🔐 Güvenlik</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('bildirimler', this)">🔔 Bildirimler</a>
+          <a href="#" class="profil-nav-link cikis" onclick="cikisYap()">🚪 Çıkış Yap</a>
+        </nav>
+      </div>
+
+      <!-- Sağ İçerik -->
+      <div class="profil-icerik">
+
+        <!-- Hesap Bilgileri -->
+        <div id="profil-hesap" class="profil-sekme aktif-sekme">
+          <h2 class="profil-baslik">Hesap Bilgilerim</h2>
+          <div class="form-grup">
+            <div class="form-satir">
+              <div class="form-alan">
+                <label>Ad</label>
+                <input type="text" value="Oktay">
+              </div>
+              <div class="form-alan">
+                <label>Soyad</label>
+                <input type="text" value="Aykut">
+              </div>
+            </div>
+            <div class="form-alan">
+              <label>E-posta Adresi</label>
+              <input type="email" value="oktyaykt7@gmail.com">
+            </div>
+            <div class="form-alan">
+              <label>Telefon Numarası</label>
+              <input type="tel" value="05384602192">
+            </div>
+            <div class="form-alan">
+              <label>Doğum Tarihi</label>
+              <input type="date" value="1990-01-01">
+            </div>
+            <div class="form-alan">
+              <label>Cinsiyet</label>
+              <select>
+                <option>Belirtmek istemiyorum</option>
+                <option>Kadın</option>
+                <option selected>Erkek</option>
+              </select>
+            </div>
+            <button class="profil-kaydet-btn" onclick="bilgiKaydet()">Bilgileri Kaydet</button>
+            <div class="kaydet-mesaj" id="kaydet-mesaj">✅ Bilgileriniz güncellendi!</div>
+          </div>
+        </div>
+
+        <!-- Siparişler -->
+        <div id="profil-siparisler" class="profil-sekme">
+          <h2 class="profil-baslik">Siparişlerim</h2>
+          <div class="siparis-kart">
+            <div class="siparis-ust">
+              <span class="siparis-no">#SP2026001</span>
+              <span class="siparis-durum teslim">Teslim Edildi</span>
+            </div>
+            <p class="siparis-tarih">15 Eylül 2026</p>
+            <p class="siparis-urun">Elegant Elbise × 1</p>
+            <p class="siparis-fiyat">799 TL</p>
+          </div>
+          <div class="siparis-kart">
+            <div class="siparis-ust">
+              <span class="siparis-no">#SP2026002</span>
+              <span class="siparis-durum kargo">Kargoda</span>
+            </div>
+            <p class="siparis-tarih">20 Eylül 2026</p>
+            <p class="siparis-urun">Siyah Blazer × 1, Kaşmir Kazak × 1</p>
+            <p class="siparis-fiyat">1.498 TL</p>
+          </div>
+          <div class="siparis-bos">
+            <p style="color:#bbb; font-size:13px; margin-top:16px;">Daha fazla sipariş bulunmuyor.</p>
+          </div>
+        </div>
+
+        <!-- Adresler -->
+        <div id="profil-adresler" class="profil-sekme">
+          <h2 class="profil-baslik">Adreslerim</h2>
+          <div class="adres-kart">
+            <div class="adres-ust">
+              <span class="adres-etiket">🏠 Ev Adresi</span>
+              <span class="varsayilan-etiket">Varsayılan</span>
+            </div>
+            <p>Oktay Aykut</p>
+            <p>Nilüfer Mahallesi, Atatürk Caddesi No:12</p>
+            <p>Nilüfer / Bursa</p>
+            <p>05384602192</p>
+            <div class="adres-butonlar">
+              <button class="adres-btn">Düzenle</button>
+              <button class="adres-btn sil">Sil</button>
+            </div>
+          </div>
+          <button class="yeni-adres-btn">+ Yeni Adres Ekle</button>
+        </div>
+
+        <!-- Ödeme Yöntemleri -->
+        <div id="profil-odeme" class="profil-sekme">
+          <h2 class="profil-baslik">Ödeme Yöntemlerim</h2>
+          <div class="kart-listesi">
+            <div class="kredi-kart">
+              <div class="kart-ust">
+                <span class="kart-tip">💳 VISA</span>
+                <span class="kart-varsayilan">Varsayılan</span>
+              </div>
+              <p class="kart-no">**** **** **** 4417</p>
+              <p class="kart-ad">OKTAY AYKUT</p>
+              <p class="kart-son">Son Kullanma: 12/28</p>
+              <button class="adres-btn sil" style="margin-top:12px;">Kartı Sil</button>
+            </div>
+          </div>
+          <button class="yeni-adres-btn">+ Yeni Kart Ekle</button>
+        </div>
+
+        <!-- Güvenlik -->
+        <div id="profil-guvenlik" class="profil-sekme">
+          <h2 class="profil-baslik">Güvenlik Ayarları</h2>
+          <div class="guvenlik-bolum">
+            <h4>Şifre Değiştir</h4>
+            <div class="form-grup">
+              <div class="form-alan">
+                <label>Mevcut Şifre</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+              <div class="form-alan">
+                <label>Yeni Şifre</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+              <div class="form-alan">
+                <label>Yeni Şifre (Tekrar)</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+              <button class="profil-kaydet-btn">Şifreyi Güncelle</button>
+            </div>
+          </div>
+          <div class="guvenlik-bolum">
+            <h4>İki Faktörlü Doğrulama</h4>
+            <p style="color:#888; font-size:14px; margin:8px 0 16px;">Hesabınızı daha güvenli hale getirmek için SMS doğrulamasını aktifleştirin.</p>
+            <div class="toggle-satir">
+              <span>SMS Doğrulama</span>
+              <label class="toggle">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-satir">
+              <span>E-posta Doğrulama</span>
+              <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="guvenlik-bolum tehlike">
+            <h4>⚠️ Tehlikeli Bölge</h4>
+            <p style="color:#888; font-size:14px; margin:8px 0 16px;">Bu işlemler geri alınamaz. Dikkatli olun.</p>
+            <button class="tehlike-btn">Hesabı Sil</button>
+          </div>
+        </div>
+
+        <!-- Bildirimler -->
+        <div id="profil-bildirimler" class="profil-sekme">
+          <h2 class="profil-baslik">Bildirim Tercihleri</h2>
+          <div class="guvenlik-bolum">
+            <h4>E-posta Bildirimleri</h4>
+            <div class="toggle-satir"><span>Sipariş güncellemeleri</span><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-satir"><span>Kampanya ve indirimler</span><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-satir"><span>Yeni koleksiyon haberleri</span><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          </div>
+          <div class="guvenlik-bolum">
+            <h4>SMS Bildirimleri</h4>
+            <div class="toggle-satir"><span>Kargo takip bildirimleri</span><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-satir"><span>Kampanya SMS'leri</span><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          </div>
+          <button class="profil-kaydet-btn" onclick="bildirimKaydet()">Tercihleri Kaydet</button>
+          <div class="kaydet-mesaj" id="bildirim-mesaj">✅ Tercihleriniz kaydedildi!</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
 <!-- SEPET -->
 <div id="sayfa-sepet" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Sepetim</h1></div>
