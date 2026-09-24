@@ -369,19 +369,19 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 
   <section class="kategori-bolum reveal">
     <div class="kategori-grid">
-      <div class="kategori-kart buyuk" onclick="sayfaGoster('urunler')">
+      <div class="kategori-kart buyuk" onclick="kategoriyeGit('mont')">
         <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600" alt="Montlar">
         <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Montlar</h3><span>Keşfet →</span></div>
       </div>
-      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+      <div class="kategori-kart" onclick="kategoriyeGit('elbise')">
         <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Elbiseler">
         <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Elbiseler</h3><span>Keşfet →</span></div>
       </div>
-      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+      <div class="kategori-kart" onclick="kategoriyeGit('ceket')">
         <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Ceketler">
         <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Ceketler</h3><span>Keşfet →</span></div>
       </div>
-      <div class="kategori-kart" onclick="sayfaGoster('urunler')">
+      <div class="kategori-kart" onclick="kategoriyeGit('kazak')">
         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" alt="Kazaklar">
         <div class="kategori-yazi"><p>Koleksiyonumuzdan</p><h3>Kazaklar</h3><span>Keşfet →</span></div>
       </div>
@@ -466,6 +466,62 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
     <div class="urun-kart" data-kategori="elbise">
       <div class="urun-resim"><img src="https://images.unsplash.com/photo-1562137369-1a1a0bc66744?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
       <h3>Şık Elbise</h3><p>1.299 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%15</div><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Midi Elbise</h3><p><span class="eski-fiyat">899 TL</span><span class="yeni-fiyat">764 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Yazlık Elbise</h3><p>649 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%25</div><img src="https://images.unsplash.com/photo-1583496661160-fb5974ca5f2a?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Akşam Elbisesi</h3><p><span class="eski-fiyat">1.599 TL</span><span class="yeni-fiyat">1.199 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Günlük Elbise</h3><p>549 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%30</div><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Çiçekli Elbise</h3><p><span class="eski-fiyat">999 TL</span><span class="yeni-fiyat">699 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Maxi Elbise</h3><p>879 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%20</div><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Mini Elbise</h3><p><span class="eski-fiyat">749 TL</span><span class="yeni-fiyat">599 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1520012218364-3dbe622b9313?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Trençkot Elbise</h3><p>1.149 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%10</div><img src="https://images.unsplash.com/photo-1550639525-c97d455acf70?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Saten Elbise</h3><p><span class="eski-fiyat">1.299 TL</span><span class="yeni-fiyat">1.169 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Bohem Elbise</h3><p>729 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%35</div><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Dantelli Elbise</h3><p><span class="eski-fiyat">1.499 TL</span><span class="yeni-fiyat">974 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Kırmızı Elbise</h3><p>849 TL</p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><div class="indirim-etiket">%20</div><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Kolsuz Elbise</h3><p><span class="eski-fiyat">699 TL</span><span class="yeni-fiyat">559 TL</span></p>
+    </div>
+    <div class="urun-kart" data-kategori="elbise">
+      <div class="urun-resim"><img src="https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=400" alt="Elbise"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
+      <h3>Gece Elbisesi</h3><p>1.399 TL</p>
     </div>
     <div class="urun-kart" data-kategori="ceket">
       <div class="urun-resim"><div class="indirim-etiket">%30</div><img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400" alt="Blazer"><button class="hizli-ekle" onclick="sepeteEkle(this)">Sepete Ekle</button></div>
@@ -988,6 +1044,19 @@ window.addEventListener('scroll', () => {
   if (window.scrollY > 50) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 });
+  function kategoriyeGit(kategori) {
+  sayfaGoster('urunler');
+  setTimeout(() => {
+    const btn = document.querySelector(`.filtre-btn[onclick="filtrele('${kategori}',this)"]`);
+    if (btn) {
+      document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('aktif-filtre'));
+      btn.classList.add('aktif-filtre');
+      document.querySelectorAll('#urunler-grid .urun-kart').forEach(kart => {
+        kart.style.display = kart.dataset.kategori === kategori ? 'block' : 'none';
+      });
+    }
+  }, 100);
+}
 </script>
 </body>
 </html>
