@@ -16,943 +16,182 @@
   --yazi: #1a1a1a;
   --yazi-acik: #666;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Lato', sans-serif;
-  background: var(--beyaz);
-  color: var(--yazi);
-  overflow-x: hidden;
-}
-
-/* ========= ANIMASYONLAR ========= */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========= TOP BAR ========= */
-.top-bar {
-  background: var(--kahve);
-  color: var(--altin-acik);
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  padding: 9px 20px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  flex-wrap: wrap;
-}
-.top-bar span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.3s;
-}
+body { font-family: 'Lato', sans-serif; background: var(--beyaz); color: var(--yazi); overflow-x: hidden; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kenburns { from { transform: scale(1.0); } to { transform: scale(1.08); } }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.top-bar { background: var(--kahve); color: var(--altin-acik); display: flex; justify-content: center; gap: 48px; padding: 9px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; flex-wrap: wrap; }
+.top-bar span { display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
 .top-bar span:hover { color: var(--altin); }
-
-/* ========= HEADER ========= */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 48px;
-  border-bottom: 1px solid #f0ebe5;
-  position: sticky;
-  top: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(10px);
-  z-index: 200;
-  transition: box-shadow 0.3s;
-}
-header.scrolled {
-  box-shadow: 0 2px 20px rgba(62,32,18,0.08);
-}
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  letter-spacing: 6px;
-  color: var(--kahve);
-  position: relative;
-}
-.logo::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--altin);
-  transition: width 0.4s ease;
-}
+header { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid #f0ebe5; position: sticky; top: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); z-index: 200; transition: box-shadow 0.3s; }
+header.scrolled { box-shadow: 0 2px 20px rgba(62,32,18,0.08); }
+.logo { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 6px; color: var(--kahve); cursor: pointer; position: relative; }
+.logo::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--altin); transition: width 0.4s ease; }
 .logo:hover::after { width: 100%; }
-
 .header-sol, .header-sag { display: flex; align-items: center; gap: 8px; }
-
-.ikon-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 8px 10px;
-  border-radius: 50%;
-  transition: background 0.3s, transform 0.2s;
-  position: relative;
-}
-.ikon-btn:hover {
-  background: var(--krem);
-  transform: scale(1.1);
-}
-.menu-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 6px;
-  transition: transform 0.3s;
-}
+.ikon-btn { background: none; border: none; font-size: 18px; cursor: pointer; padding: 8px 10px; border-radius: 50%; transition: background 0.3s, transform 0.2s; }
+.ikon-btn:hover { background: var(--krem); transform: scale(1.1); }
+.menu-btn { background: none; border: none; font-size: 20px; cursor: pointer; padding: 6px; transition: transform 0.3s; }
 .menu-btn:hover { transform: rotate(90deg); }
-
-.sepet-sayi {
-  background: var(--altin);
-  color: var(--beyaz);
-  border-radius: 50%;
-  font-size: 10px;
-  padding: 2px 5px;
-  margin-left: 2px;
-  font-weight: 700;
-}
-
-/* ========= ARAMA ========= */
-.arama-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.98);
-  padding: 40px;
-  z-index: 300;
-  border-bottom: 2px solid var(--altin);
-  animation: fadeInUp 0.3s ease;
-}
+.sepet-sayi { background: var(--altin); color: var(--beyaz); border-radius: 50%; font-size: 10px; padding: 2px 5px; margin-left: 2px; font-weight: 700; }
+.arama-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.98); padding: 40px; z-index: 300; border-bottom: 2px solid var(--altin); animation: fadeInUp 0.3s ease; }
 .arama-overlay.acik { display: block; }
-.arama-kutu {
-  display: flex;
-  max-width: 600px;
-  margin: 0 auto;
-  border-bottom: 2px solid var(--kahve);
-  padding-bottom: 12px;
-}
-.arama-kutu input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 24px;
-  font-family: 'Playfair Display', serif;
-  color: var(--kahve);
-  background: transparent;
-}
+.arama-kutu { display: flex; max-width: 600px; margin: 0 auto; border-bottom: 2px solid var(--kahve); padding-bottom: 12px; }
+.arama-kutu input { flex: 1; border: none; outline: none; font-size: 24px; font-family: 'Playfair Display', serif; color: var(--kahve); background: transparent; }
 .arama-kutu input::placeholder { color: #ccc; }
 .arama-kutu button { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--kahve); }
-
-/* ========= MOBİL MENÜ ========= */
-.mobil-menu {
-  position: fixed;
-  top: 0; left: -320px;
-  width: 300px;
-  height: 100%;
-  background: var(--beyaz);
-  z-index: 400;
-  padding: 70px 36px;
-  transition: left 0.4s cubic-bezier(0.4,0,0.2,1);
-  box-shadow: 4px 0 30px rgba(0,0,0,0.12);
-}
+.mobil-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: var(--beyaz); z-index: 400; padding: 70px 36px; transition: left 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: 4px 0 30px rgba(0,0,0,0.12); }
 .mobil-menu.acik { left: 0; }
 .mobil-menu nav { display: flex; flex-direction: column; gap: 0; }
-.mobil-menu nav a {
-  text-decoration: none;
-  color: var(--kahve);
-  font-size: 15px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 18px 0;
-  border-bottom: 1px solid #f0ebe5;
-  transition: color 0.3s, padding-left 0.3s;
-  display: block;
-}
+.mobil-menu nav a { text-decoration: none; color: var(--kahve); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; padding: 18px 0; border-bottom: 1px solid #f0ebe5; transition: color 0.3s, padding-left 0.3s; display: block; }
 .mobil-menu nav a:hover { color: var(--altin); padding-left: 8px; }
-.kapat-btn {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--kahve);
-  transition: transform 0.3s;
-}
+.kapat-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--kahve); transition: transform 0.3s; }
 .kapat-btn:hover { transform: rotate(90deg); }
-
-/* ========= KATEGORİ MENÜ ========= */
-.kategori-menu {
-  display: flex;
-  justify-content: center;
-  gap: 36px;
-  padding: 14px;
-  border-bottom: 1px solid #f0ebe5;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  flex-wrap: wrap;
-  background: var(--beyaz);
-}
-.kategori-menu a {
-  text-decoration: none;
-  color: var(--yazi);
-  padding-bottom: 2px;
-  position: relative;
-  transition: color 0.3s;
-}
-.kategori-menu a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--altin);
-  transition: width 0.3s ease;
-}
+.kategori-menu { display: flex; justify-content: center; gap: 36px; padding: 14px; border-bottom: 1px solid #f0ebe5; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; flex-wrap: wrap; background: var(--beyaz); }
+.kategori-menu a { text-decoration: none; color: var(--yazi); padding-bottom: 2px; position: relative; transition: color 0.3s; }
+.kategori-menu a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--altin); transition: width 0.3s ease; }
 .kategori-menu a:hover { color: var(--altin); }
 .kategori-menu a:hover::after { width: 100%; }
-
-/* ========= SAYFALAR ========= */
 .sayfa { display: none; }
 .aktif-sayfa { display: block; animation: fadeIn 0.5s ease; }
-
-/* ========= HERO ========= */
-.hero {
-  height: 92vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1.8s ease;
-  transform: scale(1.05);
-  animation: kenburns 8s ease infinite alternate;
-}
-@keyframes kenburns {
-  from { transform: scale(1.0); }
-  to { transform: scale(1.08); }
-}
+.hero { height: 92vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; animation: kenburns 8s ease infinite alternate; }
 .hero-slide.aktif { opacity: 1; }
-.hero-slide::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.5) 0%,
-    rgba(0,0,0,0.7) 50%,
-    rgba(0,0,0,0.9) 100%
-  );
-}
-.hero-icerik {
-  position: relative;
-  color: var(--beyaz);
-  z-index: 10;
-  padding: 0 24px;
-  max-width: 800px;
-}
-.hero-alt {
-  font-size: 11px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  color: var(--altin);
-  animation: fadeInUp 1s ease 0.3s both;
-}
-.hero-icerik h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  line-height: 1.25;
-  margin-bottom: 20px;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 1px;
-  animation: fadeInUp 1s ease 0.6s both;
-}
-.hero-aciklama {
-  font-size: 14px;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 36px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 300;
-  animation: fadeInUp 1s ease 0.9s both;
-}
-.hero-btn {
-  background: transparent;
-  color: var(--beyaz);
-  border: 1px solid rgba(255,255,255,0.6);
-  padding: 16px 52px;
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 1s ease 1.2s both;
-}
-.hero-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--altin);
-  transform: translateX(-100%);
-  transition: transform 0.4s ease;
-  z-index: -1;
-}
-.hero-btn:hover {
-  border-color: var(--altin);
-  color: var(--beyaz);
-}
+.hero-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%); }
+.hero-icerik { position: relative; color: var(--beyaz); z-index: 10; padding: 0 24px; max-width: 800px; }
+.hero-alt { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; color: var(--altin); animation: fadeInUp 1s ease 0.3s both; }
+.hero-icerik h1 { font-family: 'Playfair Display', serif; font-size: 56px; line-height: 1.25; margin-bottom: 20px; font-weight: 400; font-style: italic; letter-spacing: 1px; animation: fadeInUp 1s ease 0.6s both; }
+.hero-aciklama { font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 36px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; animation: fadeInUp 1s ease 0.9s both; }
+.hero-btn { background: transparent; color: var(--beyaz); border: 1px solid rgba(255,255,255,0.6); padding: 16px 52px; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; animation: fadeInUp 1s ease 1.2s both; }
+.hero-btn::before { content: ''; position: absolute; inset: 0; background: var(--altin); transform: translateX(-100%); transition: transform 0.4s ease; z-index: -1; }
+.hero-btn:hover { border-color: var(--altin); }
 .hero-btn:hover::before { transform: translateX(0); }
-
-.hero-dots {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-.hero-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.6);
-}
-.hero-dot.aktif {
-  background: var(--altin);
-  width: 24px;
-  border-radius: 3px;
-  border-color: var(--altin);
-}
-
-/* ========= KATEGORİ GRID ========= */
+.hero-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.6); }
+.hero-dot.aktif { background: var(--altin); width: 24px; border-radius: 3px; border-color: var(--altin); }
 .kategori-bolum { padding: 80px 48px; }
-.kategori-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.kategori-kart {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  height: 300px;
-}
+.kategori-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1200px; margin: 0 auto; }
+.kategori-kart { position: relative; overflow: hidden; cursor: pointer; height: 300px; }
 .kategori-kart.buyuk { grid-row: span 2; height: 100%; }
-.kategori-kart img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
-}
-.kategori-kart::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(20,10,5,0.6) 0%, transparent 60%);
-  transition: opacity 0.4s;
-}
+.kategori-kart img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+.kategori-kart::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,10,5,0.6) 0%, transparent 60%); }
 .kategori-kart:hover img { transform: scale(1.08); }
-.kategori-yazi {
-  position: absolute;
-  bottom: 24px; left: 24px;
-  color: var(--beyaz);
-  z-index: 2;
-}
-.kategori-yazi p {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--altin);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-.kategori-yazi h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  margin-bottom: 8px;
-  transition: transform 0.3s;
-}
+.kategori-yazi { position: absolute; bottom: 24px; left: 24px; color: var(--beyaz); z-index: 2; }
+.kategori-yazi p { font-size: 9px; letter-spacing: 3px; color: var(--altin); margin-bottom: 6px; text-transform: uppercase; }
+.kategori-yazi h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; transition: transform 0.3s; }
 .kategori-kart:hover .kategori-yazi h3 { transform: translateX(6px); }
-.kategori-yazi span {
-  font-size: 11px;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 1px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: gap 0.3s;
-}
+.kategori-yazi span { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
 .kategori-kart:hover .kategori-yazi span { gap: 12px; }
-
-/* ========= BÖLÜM ========= */
 .bolum { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-.bolum-baslik {
-  font-family: 'Playfair Display', serif;
-  font-size: 34px;
-  text-align: center;
-  margin-bottom: 48px;
-  letter-spacing: 1px;
-  color: var(--kahve);
-  font-style: italic;
-}
-.bolum-baslik::after {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: var(--altin);
-  margin: 14px auto 0;
-}
-
-/* ========= ÜRÜN GRID ========= */
+.bolum-baslik { font-family: 'Playfair Display', serif; font-size: 34px; text-align: center; margin-bottom: 48px; letter-spacing: 1px; color: var(--kahve); font-style: italic; }
+.bolum-baslik::after { content: ''; display: block; width: 40px; height: 1px; background: var(--altin); margin: 14px auto 0; }
 .urun-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; }
 .urun-grid.genis { padding: 48px; max-width: 1200px; margin: 0 auto; }
-.urun-kart {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+.urun-kart { position: relative; cursor: pointer; transition: transform 0.3s ease; }
 .urun-kart:hover { transform: translateY(-4px); }
-.urun-resim {
-  position: relative;
-  overflow: hidden;
-  height: 380px;
-  margin-bottom: 14px;
-  background: var(--gri);
-}
-.urun-resim img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
+.urun-resim { position: relative; overflow: hidden; height: 380px; margin-bottom: 14px; background: var(--gri); }
+.urun-resim img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
 .urun-kart:hover .urun-resim img { transform: scale(1.06); }
-.hizli-ekle {
-  position: absolute;
-  bottom: -56px; left: 0; right: 0;
-  background: rgba(62,32,18,0.92);
-  color: var(--beyaz);
-  border: none;
-  padding: 16px;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1);
-  font-family: 'Lato', sans-serif;
-}
+.hizli-ekle { position: absolute; bottom: -56px; left: 0; right: 0; background: rgba(62,32,18,0.92); color: var(--beyaz); border: none; padding: 16px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1); font-family: 'Lato', sans-serif; }
 .urun-kart:hover .hizli-ekle { bottom: 0; }
 .hizli-ekle:hover { background: var(--altin); }
-.urun-kart h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  color: var(--kahve);
-  font-weight: 400;
-}
+.urun-kart h3 { font-family: 'Playfair Display', serif; font-size: 15px; letter-spacing: 0.5px; margin-bottom: 8px; color: var(--kahve); font-weight: 400; }
 .urun-kart p { color: var(--yazi-acik); font-size: 14px; }
-
-.indirim-etiket {
-  position: absolute;
-  top: 14px; left: 14px;
-  background: var(--altin);
-  color: var(--beyaz);
-  padding: 4px 10px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  z-index: 1;
-  font-weight: 600;
-}
-.eski-fiyat {
-  text-decoration: line-through;
-  color: #bbb;
-  margin-right: 8px;
-  font-size: 13px;
-}
-.yeni-fiyat {
-  color: var(--kahve);
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.tumu-btn {
-  background: transparent;
-  color: var(--kahve);
-  border: 1px solid var(--kahve);
-  padding: 14px 52px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  font-family: 'Lato', sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-.tumu-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--kahve);
-  transform: translateY(100%);
-  transition: transform 0.35s ease;
-  z-index: -1;
-}
+.indirim-etiket { position: absolute; top: 14px; left: 14px; background: var(--altin); color: var(--beyaz); padding: 4px 10px; font-size: 10px; letter-spacing: 1px; z-index: 1; font-weight: 600; }
+.eski-fiyat { text-decoration: line-through; color: #bbb; margin-right: 8px; font-size: 13px; }
+.yeni-fiyat { color: var(--kahve); font-weight: 700; font-size: 15px; }
+.tumu-btn { background: transparent; color: var(--kahve); border: 1px solid var(--kahve); padding: 14px 52px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.35s ease; font-family: 'Lato', sans-serif; position: relative; overflow: hidden; }
+.tumu-btn::before { content: ''; position: absolute; inset: 0; background: var(--kahve); transform: translateY(100%); transition: transform 0.35s ease; z-index: -1; }
 .tumu-btn:hover { color: var(--beyaz); }
 .tumu-btn:hover::before { transform: translateY(0); }
-
-/* ========= İSTATİSTİK ========= */
 .istatistik { background: var(--kahve); padding: 72px 48px; }
-.istatistik-grid {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  color: var(--beyaz);
-}
-.istatistik-grid h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: var(--altin);
-  margin-bottom: 8px;
-  font-style: italic;
-}
-.istatistik-grid p {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-}
-
-/* ========= HİKAYE ========= */
+.istatistik-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 900px; margin: 0 auto; text-align: center; color: var(--beyaz); }
+.istatistik-grid h3 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--altin); margin-bottom: 8px; font-style: italic; }
+.istatistik-grid p { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
 .hikaye { padding: 100px 48px; background: var(--krem); }
-.hikaye-icerik {
-  display: flex;
-  gap: 80px;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
+.hikaye-icerik { display: flex; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
 .hikaye-yazi { flex: 1; min-width: 280px; }
-.ust-yazi {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--altin);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.ust-yazi::before {
-  content: '';
-  display: inline-block;
-  width: 30px; height: 1px;
-  background: var(--altin);
-}
-.hikaye-yazi h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  margin-bottom: 20px;
-  line-height: 1.4;
-  color: var(--kahve);
-  font-style: italic;
-}
+.ust-yazi { font-size: 10px; letter-spacing: 4px; color: var(--altin); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.ust-yazi::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--altin); }
+.hikaye-yazi h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px; line-height: 1.4; color: var(--kahve); font-style: italic; }
 .hikaye-yazi p { color: var(--yazi-acik); line-height: 1.9; font-size: 15px; font-weight: 300; }
-.hikaye-btn {
-  margin-top: 28px;
-  background: var(--kahve);
-  color: var(--beyaz);
-  border: none;
-  padding: 14px 36px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  font-family: 'Lato', sans-serif;
-}
+.hikaye-btn { margin-top: 28px; background: var(--kahve); color: var(--beyaz); border: none; padding: 14px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s, transform 0.2s; font-family: 'Lato', sans-serif; }
 .hikaye-btn:hover { background: var(--altin); transform: translateY(-2px); }
 .hikaye-resim { flex: 1; min-width: 280px; position: relative; }
-.hikaye-resim img {
-  width: 100%; height: 500px;
-  object-fit: cover;
-  display: block;
-}
-.hikaye-resim::before {
-  content: '';
-  position: absolute;
-  top: -16px; left: -16px;
-  right: 16px; bottom: 16px;
-  border: 1px solid var(--altin);
-  z-index: 0;
-}
-.hikaye-resim img { position: relative; z-index: 1; }
-
-/* ========= YORUMLAR ========= */
+.hikaye-resim img { width: 100%; height: 500px; object-fit: cover; display: block; position: relative; z-index: 1; }
+.hikaye-resim::before { content: ''; position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px; border: 1px solid var(--altin); z-index: 0; }
 .yorumlar { padding: 100px 48px; background: var(--beyaz); }
-.yorum-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 24px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.yorum-kart {
-  background: var(--krem);
-  padding: 36px;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s, transform 0.3s;
-  position: relative;
-}
-.yorum-kart::before {
-  content: '"';
-  font-family: 'Playfair Display', serif;
-  font-size: 80px;
-  color: var(--altin);
-  opacity: 0.3;
-  position: absolute;
-  top: 10px; left: 24px;
-  line-height: 1;
-}
+.yorum-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.yorum-kart { background: var(--krem); padding: 36px; border-bottom: 2px solid transparent; transition: border-color 0.3s, transform 0.3s; position: relative; }
+.yorum-kart::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 80px; color: var(--altin); opacity: 0.3; position: absolute; top: 10px; left: 24px; line-height: 1; }
 .yorum-kart:hover { border-color: var(--altin); transform: translateY(-4px); }
 .yildiz { color: var(--altin); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
 .yorum-kart p { color: #555; line-height: 1.8; font-size: 14px; font-style: italic; font-weight: 300; }
 .yorum-isim { margin-top: 20px; font-size: 11px; letter-spacing: 2px; color: var(--kahve); text-transform: uppercase; font-weight: 600; }
-
-/* ========= SAYFA BAŞLIK ========= */
-.sayfa-baslik-bolum {
-  background: var(--krem);
-  text-align: center;
-  padding: 72px 20px;
-  border-bottom: 1px solid #f0ebe5;
-  position: relative;
-  overflow: hidden;
-}
-.sayfa-baslik-bolum::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 1px; height: 40px;
-  background: var(--altin);
-}
-.sayfa-baslik-bolum h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  letter-spacing: 3px;
-  color: var(--kahve);
-  font-style: italic;
-}
-
-/* ========= FİLTRE ========= */
-.filtre-bar {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 36px 20px 0;
-  flex-wrap: wrap;
-}
-.filtre-btn {
-  background: transparent;
-  border: 1px solid #ddd;
-  color: var(--yazi-acik);
-  padding: 8px 24px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'Lato', sans-serif;
-}
+.sayfa-baslik-bolum { background: var(--krem); text-align: center; padding: 72px 20px; border-bottom: 1px solid #f0ebe5; position: relative; overflow: hidden; }
+.sayfa-baslik-bolum::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 40px; background: var(--altin); }
+.sayfa-baslik-bolum h1 { font-family: 'Playfair Display', serif; font-size: 48px; letter-spacing: 3px; color: var(--kahve); font-style: italic; }
+.filtre-bar { display: flex; justify-content: center; gap: 8px; padding: 36px 20px 0; flex-wrap: wrap; }
+.filtre-btn { background: transparent; border: 1px solid #ddd; color: var(--yazi-acik); padding: 8px 24px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; }
 .filtre-btn:hover { border-color: var(--kahve); color: var(--kahve); }
 .aktif-filtre { background: var(--kahve); color: var(--beyaz); border-color: var(--kahve); }
-
-/* ========= KAMPANYA ========= */
-.kampanya-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.kampanya-kart {
-  background: var(--krem);
-  padding: 48px 40px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-bottom: 2px solid transparent;
-}
+.kampanya-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.kampanya-kart { background: var(--krem); padding: 48px 40px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border-bottom: 2px solid transparent; }
 .kampanya-kart:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(62,32,18,0.1); border-color: var(--altin); }
 .kampanya-ikon { font-size: 36px; margin-bottom: 20px; }
 .kampanya-kart h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 12px; color: var(--kahve); }
 .kampanya-kart p { color: var(--yazi-acik); margin-bottom: 24px; line-height: 1.7; font-size: 14px; }
-.kampanya-btn {
-  background: var(--kahve);
-  color: var(--beyaz);
-  border: none;
-  padding: 12px 32px;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s;
-  font-family: 'Lato', sans-serif;
-}
+.kampanya-btn { background: var(--kahve); color: var(--beyaz); border: none; padding: 12px 32px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
 .kampanya-btn:hover { background: var(--altin); }
-
-/* ========= İLETİŞİM ========= */
 .iletisim-bolum { padding: 80px 48px; max-width: 1000px; margin: 0 auto; }
 .iletisim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
-.iletisim-bilgi h3, .iletisim-form h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  margin-bottom: 28px;
-  color: var(--kahve);
-  font-style: italic;
-}
+.iletisim-bilgi h3, .iletisim-form h3 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 28px; color: var(--kahve); font-style: italic; }
 .iletisim-satir { display: flex; gap: 14px; margin-bottom: 18px; color: var(--yazi-acik); font-size: 14px; align-items: flex-start; }
-.whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  background: #25d366;
-  color: var(--beyaz);
-  text-decoration: none;
-  padding: 13px 28px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  border-radius: 2px;
-  transition: background 0.3s, transform 0.2s;
-  font-family: 'Lato', sans-serif;
-}
+.whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: #25d366; color: var(--beyaz); text-decoration: none; padding: 13px 28px; font-size: 12px; letter-spacing: 1px; border-radius: 2px; transition: background 0.3s, transform 0.2s; font-family: 'Lato', sans-serif; }
 .whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); }
 .iletisim-form { display: flex; flex-direction: column; gap: 16px; }
-.iletisim-form input, .iletisim-form textarea {
-  padding: 13px 16px;
-  border: 1px solid #e8e0d8;
-  outline: none;
-  font-size: 14px;
-  font-family: 'Lato', sans-serif;
-  transition: border-color 0.3s;
-  background: var(--krem);
-  color: var(--yazi);
-}
+.iletisim-form input, .iletisim-form textarea { padding: 13px 16px; border: 1px solid #e8e0d8; outline: none; font-size: 14px; font-family: 'Lato', sans-serif; transition: border-color 0.3s; background: var(--krem); color: var(--yazi); }
 .iletisim-form input:focus, .iletisim-form textarea:focus { border-color: var(--altin); }
 .iletisim-form textarea { height: 130px; resize: none; }
-.iletisim-form button {
-  background: var(--kahve);
-  color: var(--beyaz);
-  border: none;
-  padding: 15px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s;
-  font-family: 'Lato', sans-serif;
-}
+.iletisim-form button { background: var(--kahve); color: var(--beyaz); border: none; padding: 15px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
 .iletisim-form button:hover { background: var(--altin); }
 .basarili { color: var(--altin); font-size: 13px; display: none; text-align: center; padding: 8px; }
-
-/* ========= KARGO ========= */
-.bilgi-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.bilgi-kart {
-  background: var(--krem);
-  padding: 40px;
-  border-left: 3px solid var(--altin);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+.bilgi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.bilgi-kart { background: var(--krem); padding: 40px; border-left: 3px solid var(--altin); transition: transform 0.3s, box-shadow 0.3s; }
 .bilgi-kart:hover { transform: translateX(4px); box-shadow: 4px 0 20px rgba(200,169,110,0.15); }
 .bilgi-ikon { font-size: 32px; margin-bottom: 16px; }
 .bilgi-kart h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 16px; color: var(--kahve); }
 .bilgi-kart ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .bilgi-kart ul li { color: var(--yazi-acik); font-size: 14px; padding-left: 16px; position: relative; line-height: 1.6; }
 .bilgi-kart ul li::before { content: '—'; position: absolute; left: 0; color: var(--altin); }
-
-/* ========= SEPET ========= */
 .sepet-bos { text-align: center; padding: 100px 20px; }
 .sepet-bos p:first-child { font-size: 56px; margin-bottom: 20px; }
 .sepet-bos h3 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 12px; color: #ccc; font-style: italic; }
 .sepet-bos p.alt { color: #bbb; margin-bottom: 32px; font-size: 14px; }
-.sepet-bos button {
-  background: var(--kahve);
-  color: var(--beyaz);
-  border: none;
-  padding: 14px 44px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s;
-  font-family: 'Lato', sans-serif;
-}
+.sepet-bos button { background: var(--kahve); color: var(--beyaz); border: none; padding: 14px 44px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
 .sepet-bos button:hover { background: var(--altin); }
-
-/* ========= FOOTER ========= */
-footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
-.footer-ust {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
-  max-width: 1000px;
-  margin: 0 auto 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  letter-spacing: 6px;
-  margin-bottom: 16px;
-  color: var(--beyaz);
-}
-.footer-aciklama { color: rgba(255,255,255,0.4); font-size: 13px; line-height: 1.8; font-weight: 300; }
-.footer-baslik { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--altin); margin-bottom: 20px; }
-.footer-linkler { display: flex; flex-direction: column; gap: 12px; }
-.footer-linkler a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 13px;
-  transition: color 0.3s, padding-left 0.3s;
-}
-.footer-linkler a:hover { color: var(--altin); padding-left: 4px; }
-.footer-alt {
-  text-align: center;
-  color: rgba(255,255,255,0.3);
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-/* ========= WHATSAPP ========= */
-.whatsapp-sabit {
-  position: fixed;
-  bottom: 32px; right: 32px;
-  background: #25d366;
-  color: var(--beyaz);
-  width: 54px; height: 54px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  text-decoration: none;
-  box-shadow: 0 6px 24px rgba(37,211,102,0.4);
-  transition: transform 0.3s, box-shadow 0.3s;
-  z-index: 500;
-}
-.whatsapp-sabit:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,0.5); }
-
-/* ========= BİLDİRİM ========= */
-.bildirim {
-  position: fixed;
-  bottom: 100px; right: 32px;
-  background: var(--kahve);
-  color: var(--beyaz);
-  padding: 14px 24px;
-  border-left: 3px solid var(--altin);
-  font-size: 13px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
-  z-index: 500;
-  letter-spacing: 0.5px;
-}
-.bildirim.goster { opacity: 1; transform: translateY(0); }
-
-/* ========= MOBİL ========= */
-@media (max-width: 768px) {
-  header { padding: 14px 20px; }
-  .logo { font-size: 16px; letter-spacing: 3px; }
-  .kategori-menu { display: none; }
-  .hero-icerik h1 { font-size: 36px; }
-  .hero { height: 75vh; }
-  .kategori-bolum { padding: 48px 20px; }
-  .kategori-grid { grid-template-columns: 1fr 1fr; }
-  .kategori-kart.buyuk { grid-row: span 1; height: 300px; }
-  .urun-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
-  .istatistik-grid { grid-template-columns: repeat(2,1fr); }
-  .yorum-grid { grid-template-columns: 1fr; }
-  .kampanya-grid { grid-template-columns: 1fr; }
-  .iletisim-grid { grid-template-columns: 1fr; }
-  .bilgi-grid { grid-template-columns: 1fr; }
-  .hikaye-icerik { gap: 40px; }
-  .bolum { padding: 48px 20px; }
-  .hikaye { padding: 60px 20px; }
-  .footer-ust { grid-template-columns: 1fr; gap: 32px; }
-  .hikaye-resim::before { display: none; }
-}
-  /* ========= PROFİL ========= */
+.sepet-liste { max-width: 800px; margin: 0 auto; padding: 48px; }
+.sepet-urun-kart { display: flex; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid #f0ebe5; }
+.sepet-urun-resim { width: 90px; height: 90px; object-fit: cover; border: 1px solid #f0ebe5; flex-shrink: 0; }
+.sepet-urun-bilgi { flex: 1; }
+.sepet-urun-bilgi h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--kahve); margin-bottom: 6px; }
+.sepet-urun-bilgi p { color: var(--yazi-acik); font-size: 14px; }
+.sepet-adet-yazi { color: var(--altin) !important; font-size: 12px !important; font-weight: 600; margin-top: 4px; }
+.sepet-urun-adet { display: flex; align-items: center; gap: 12px; }
+.sepet-urun-adet button { background: none; border: 1px solid #ddd; width: 30px; height: 30px; cursor: pointer; font-size: 16px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+.sepet-urun-adet button:hover { border-color: var(--kahve); color: var(--kahve); }
+.sepet-urun-adet span { font-size: 15px; font-weight: 600; min-width: 24px; text-align: center; }
+.sepet-sil-btn { background: none; border: none; color: #ccc; font-size: 18px; cursor: pointer; transition: color 0.3s; padding: 4px 8px; }
+.sepet-sil-btn:hover { color: #e74c3c; }
+.sepet-toplam { margin-top: 32px; padding: 28px; background: var(--krem); border: 1px solid #f0ebe5; }
+.sepet-toplam-satir { display: flex; justify-content: space-between; padding: 12px 0; font-size: 14px; color: var(--yazi-acik); border-bottom: 1px solid #f0ebe5; }
+.sepet-toplam-satir:last-of-type { border-bottom: none; }
+.toplam-buyuk { font-size: 18px; font-weight: 700; color: var(--kahve); font-family: 'Playfair Display', serif; }
+.odeme-guvence { background: var(--krem); border: 1px solid #f0ebe5; padding: 14px 16px; display: flex; justify-content: space-between; font-size: 12px; color: var(--yazi-acik); letter-spacing: 0.5px; flex-wrap: wrap; gap: 8px; }
 .profil-bolum { padding: 60px 48px; max-width: 1100px; margin: 0 auto; }
 .profil-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
 .profil-menu { background: var(--krem); border: 1px solid #f0ebe5; padding: 32px 24px; position: sticky; top: 100px; }
@@ -963,8 +202,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 .profil-nav { display: flex; flex-direction: column; gap: 4px; }
 .profil-nav-link { text-decoration: none; color: var(--yazi-acik); font-size: 13px; padding: 12px 16px; border-radius: 2px; transition: all 0.3s; letter-spacing: 0.5px; display: block; }
 .profil-nav-link:hover { background: var(--altin-acik); color: var(--kahve); padding-left: 20px; }
-.aktif-profil { background: var(--kahve); color: var(--beyaz) !important; }
-.aktif-profil:hover { background: var(--kahve) !important; color: var(--beyaz) !important; padding-left: 16px !important; }
+.aktif-profil { background: var(--kahve) !important; color: var(--beyaz) !important; }
 .profil-nav-link.cikis { color: #e74c3c; margin-top: 12px; border-top: 1px solid #f0ebe5; padding-top: 16px; }
 .profil-nav-link.cikis:hover { background: #ffeaea; }
 .profil-icerik { background: var(--beyaz); border: 1px solid #f0ebe5; padding: 40px; }
@@ -977,7 +215,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 .form-alan label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--kahve); font-weight: 600; }
 .form-alan input, .form-alan select { padding: 12px 16px; border: 1px solid #e8e0d8; outline: none; font-size: 14px; font-family: 'Lato', sans-serif; transition: border-color 0.3s; background: var(--krem); color: var(--yazi); }
 .form-alan input:focus, .form-alan select:focus { border-color: var(--altin); }
-.profil-kaydet-btn { background: var(--kahve); color: var(--beyaz); border: none; padding: 14px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; align-self: flex-start; }
+.profil-kaydet-btn { background: var(--kahve); color: var(--beyaz); border: none; padding: 14px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
 .profil-kaydet-btn:hover { background: var(--altin); }
 .kaydet-mesaj { color: var(--altin); font-size: 13px; display: none; padding: 8px 0; }
 .siparis-kart { border: 1px solid #f0ebe5; padding: 24px; margin-bottom: 16px; transition: box-shadow 0.3s; }
@@ -1003,16 +241,14 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 .adres-btn.sil:hover { background: #e74c3c; color: var(--beyaz); }
 .yeni-adres-btn { background: transparent; border: 1px dashed var(--altin); color: var(--altin); padding: 14px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; width: 100%; margin-top: 8px; }
 .yeni-adres-btn:hover { background: var(--altin); color: var(--beyaz); }
-.kredi-kart { background: linear-gradient(135deg, var(--kahve) 0%, #5c3317 100%); color: var(--beyaz); padding: 28px; border-radius: 4px; max-width: 340px; position: relative; overflow: hidden; }
+.kredi-kart { background: linear-gradient(135deg, var(--kahve) 0%, #5c3317 100%); color: var(--beyaz); padding: 28px; border-radius: 4px; max-width: 340px; position: relative; overflow: hidden; margin-bottom: 24px; }
 .kredi-kart::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(200,169,110,0.2); }
-.kredi-kart::after { content: ''; position: absolute; top: 20px; right: 20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(200,169,110,0.15); }
 .kart-ust { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .kart-tip { font-size: 18px; font-weight: 700; letter-spacing: 2px; }
 .kart-varsayilan { font-size: 10px; background: var(--altin); padding: 3px 10px; letter-spacing: 1px; }
 .kart-no { font-size: 20px; letter-spacing: 4px; margin-bottom: 16px; font-family: 'Playfair Display', serif; }
 .kart-ad { font-size: 12px; letter-spacing: 2px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
 .kart-son { font-size: 12px; color: rgba(255,255,255,0.5); }
-.kart-listesi { margin-bottom: 24px; }
 .guvenlik-bolum { border: 1px solid #f0ebe5; padding: 28px; margin-bottom: 20px; }
 .guvenlik-bolum h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--kahve); margin-bottom: 16px; }
 .guvenlik-bolum.tehlike { border-color: #ffd5d5; background: #fff8f8; }
@@ -1020,38 +256,52 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 .tehlike-btn { background: #e74c3c; color: var(--beyaz); border: none; padding: 12px 28px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
 .tehlike-btn:hover { background: #c0392b; }
 .toggle-satir { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f0ebe5; font-size: 14px; color: var(--yazi); }
-.toggle-satir:last-of-type { border-bottom: none; }
 .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
 .toggle input { opacity: 0; width: 0; height: 0; }
 .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #ddd; transition: 0.3s; border-radius: 24px; }
 .toggle-slider::before { content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: var(--beyaz); transition: 0.3s; border-radius: 50%; }
 .toggle input:checked + .toggle-slider { background: var(--altin); }
 .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
+.footer-ust { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1000px; margin: 0 auto 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 6px; margin-bottom: 16px; color: var(--beyaz); }
+.footer-aciklama { color: rgba(255,255,255,0.4); font-size: 13px; line-height: 1.8; font-weight: 300; }
+.footer-baslik { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--altin); margin-bottom: 20px; }
+.footer-linkler { display: flex; flex-direction: column; gap: 12px; }
+.footer-linkler a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.3s, padding-left 0.3s; }
+.footer-linkler a:hover { color: var(--altin); padding-left: 4px; }
+.footer-alt { text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 1px; }
+.whatsapp-sabit { position: fixed; bottom: 32px; right: 32px; background: #25d366; color: var(--beyaz); width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 6px 24px rgba(37,211,102,0.4); transition: transform 0.3s, box-shadow 0.3s; z-index: 500; }
+.whatsapp-sabit:hover { transform: scale(1.12) translateY(-3px); }
+.bildirim { position: fixed; bottom: 100px; right: 32px; background: var(--kahve); color: var(--beyaz); padding: 14px 24px; border-left: 3px solid var(--altin); font-size: 13px; opacity: 0; transform: translateY(16px); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); pointer-events: none; z-index: 500; }
+.bildirim.goster { opacity: 1; transform: translateY(0); }
 @media (max-width: 768px) {
+  header { padding: 14px 20px; }
+  .logo { font-size: 16px; letter-spacing: 3px; }
+  .kategori-menu { display: none; }
+  .hero-icerik h1 { font-size: 36px; }
+  .hero { height: 75vh; }
+  .kategori-bolum { padding: 48px 20px; }
+  .kategori-grid { grid-template-columns: 1fr 1fr; }
+  .kategori-kart.buyuk { grid-row: span 1; height: 300px; }
+  .urun-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .istatistik-grid { grid-template-columns: repeat(2,1fr); }
+  .yorum-grid { grid-template-columns: 1fr; }
+  .kampanya-grid { grid-template-columns: 1fr; }
+  .iletisim-grid { grid-template-columns: 1fr; }
+  .bilgi-grid { grid-template-columns: 1fr; }
+  .hikaye-icerik { gap: 40px; }
+  .bolum { padding: 48px 20px; }
+  .hikaye { padding: 60px 20px; }
+  .footer-ust { grid-template-columns: 1fr; gap: 32px; }
+  .hikaye-resim::before { display: none; }
   .profil-grid { grid-template-columns: 1fr; }
   .profil-menu { position: static; }
   .form-satir { grid-template-columns: 1fr; }
   .profil-bolum { padding: 40px 20px; }
+  .sepet-liste { padding: 24px 20px; }
+  .iletisim-bolum { padding: 40px 20px; }
 }
-  /* SEPET ÜRÜNLER */
-.sepet-liste { max-width: 700px; margin: 0 auto; }
-.sepet-urun-kart { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #f0ebe5; gap: 16px; }
-.sepet-urun-bilgi { flex: 1; }
-.sepet-urun-bilgi h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--kahve); margin-bottom: 4px; }
-.sepet-urun-bilgi p { color: var(--yazi-acik); font-size: 14px; }
-.sepet-urun-adet { display: flex; align-items: center; gap: 12px; }
-.sepet-urun-adet button { background: none; border: 1px solid #ddd; width: 28px; height: 28px; cursor: pointer; font-size: 16px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
-.sepet-urun-adet button:hover { border-color: var(--kahve); color: var(--kahve); }
-.sepet-urun-adet span { font-size: 15px; font-weight: 600; min-width: 20px; text-align: center; }
-.sepet-sil-btn { background: none; border: none; color: #ccc; font-size: 16px; cursor: pointer; transition: color 0.3s; padding: 4px 8px; }
-.sepet-sil-btn:hover { color: #e74c3c; }
-.sepet-toplam { margin-top: 32px; padding: 28px; background: var(--krem); border: 1px solid #f0ebe5; }
-.sepet-toplam-satir { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14px; color: var(--yazi-acik); border-bottom: 1px solid #f0ebe5; }
-.sepet-toplam-satir:last-of-type { border-bottom: none; }
-.toplam-buyuk { font-size: 18px; font-weight: 700; color: var(--kahve); font-family: 'Playfair Display', serif; }
-  .sepet-urun-resim { width: 80px; height: 80px; object-fit: cover; border: 1px solid #f0ebe5; flex-shrink: 0; }
-.sepet-adet-yazi { color: var(--altin); font-size: 12px; font-weight: 600; margin-top: 4px; }
-.odeme-guvence { background: var(--krem); border: 1px solid #f0ebe5; padding: 14px 16px; display: flex; justify-content: space-between; font-size: 12px; color: var(--yazi-acik); letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
@@ -1064,12 +314,12 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 
 <header id="header">
   <div class="header-sol"><button class="menu-btn" onclick="menuAc()">☰</button></div>
-  <div class="logo" onclick="sayfaGoster('anasayfa')" style="cursor:pointer;">AYKUT GİYİM</div>
+  <div class="logo" onclick="sayfaGoster('anasayfa')">AYKUT GİYİM</div>
   <div class="header-sag">
     <button class="ikon-btn" onclick="aramaAc()">🔍</button>
     <button class="ikon-btn" onclick="favorilerAc()">♡</button>
     <button class="ikon-btn" onclick="sayfaGoster('sepet')">🛒 <span class="sepet-sayi">0</span></button>
-<button class="ikon-btn" onclick="sayfaGoster('profil')">👤</button>
+    <button class="ikon-btn" onclick="sayfaGoster('profil')">👤</button>
   </div>
 </header>
 
@@ -1100,12 +350,10 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
   <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
   <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
-  <a href="#" onclick="sayfaGoster('profil')">Profilim</a>
 </div>
 
 <!-- ANA SAYFA -->
 <div id="sayfa-anasayfa" class="sayfa aktif-sayfa">
-
   <div class="hero">
     <div class="hero-slide aktif" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1400&q=80')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&q=80')"></div>
@@ -1180,7 +428,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
       <div class="hikaye-yazi">
         <p class="ust-yazi">Bizim Hikayemiz</p>
         <h2>Giyim, sadece bir aksesuar değil — bir ifade biçimi.</h2>
-        <p>Aykut Giyim olarak 1990'dan bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Her parçayı özenle seçiyor, sizi özel hissettirmek için çalışıyoruz.</p>
+        <p>Aykut Giyim olarak 1990'dan bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz.</p>
         <button class="hikaye-btn" onclick="sayfaGoster('hakkimizda')">Hikayemizi Keşfet</button>
       </div>
       <div class="hikaye-resim">
@@ -1193,9 +441,9 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
     <div style="max-width:1100px;margin:0 auto;padding:0 48px;">
       <h2 class="bolum-baslik">Müşterilerimiz Diyor Ki</h2>
       <div class="yorum-grid">
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Kalitesi ve şıklığıyla beklentilerimin çok üzerinde. Her gün giyiyorum.</p><p class="yorum-isim">Elif K. — İstanbul</p></div>
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Siparişim çok hızlı geldi, paketleme inanılmaz özenli yapılmış.</p><p class="yorum-isim">Selin M. — Ankara</p></div>
-        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Hem şık hem kaliteli. Fiyat-performans açısından mükemmel.</p><p class="yorum-isim">Zeynep A. — Bursa</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Kalitesi ve şıklığıyla beklentilerimin çok üzerinde.</p><p class="yorum-isim">Elif K. — İstanbul</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Siparişim çok hızlı geldi, paketleme inanılmaz özenli.</p><p class="yorum-isim">Selin M. — Ankara</p></div>
+        <div class="yorum-kart"><p class="yildiz">★★★★★</p><p>Hem şık hem kaliteli. Herkese tavsiye ederim!</p><p class="yorum-isim">Zeynep A. — Bursa</p></div>
       </div>
     </div>
   </section>
@@ -1244,10 +492,10 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   <div class="sayfa-baslik-bolum"><h1>Kampanyalar</h1></div>
   <section class="bolum">
     <div class="kampanya-grid">
-      <div class="kampanya-kart"><div class="kampanya-ikon">🏷️</div><h3>Sezon Sonu İndirimi</h3><p>Seçili ürünlerde %40'a varan indirim fırsatı sizi bekliyor.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Ürünlere Git</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">🚚</div><h3>Ücretsiz Kargo</h3><p>500 TL ve üzeri tüm siparişlerde ücretsiz kargo ayrıcalığı.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Hemen Al</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">🎁</div><h3>2 Al 1 Öde</h3><p>Seçili kazak ve bluz ürünlerinde geçerli özel kampanya.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Keşfet</button></div>
-      <div class="kampanya-kart"><div class="kampanya-ikon">💳</div><h3>Kapıda Ödeme</h3><p>Tüm siparişlerde güvenli kapıda ödeme imkanı sunuyoruz.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Alışverişe Başla</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🏷️</div><h3>Sezon Sonu İndirimi</h3><p>Seçili ürünlerde %40'a varan indirim fırsatı.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Ürünlere Git</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🚚</div><h3>Ücretsiz Kargo</h3><p>500 TL ve üzeri tüm siparişlerde ücretsiz kargo.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Hemen Al</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">🎁</div><h3>2 Al 1 Öde</h3><p>Seçili kazak ve bluz ürünlerinde geçerli.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Keşfet</button></div>
+      <div class="kampanya-kart"><div class="kampanya-ikon">💳</div><h3>Kapıda Ödeme</h3><p>Tüm siparişlerde kapıda ödeme imkanı.</p><button class="kampanya-btn" onclick="sayfaGoster('urunler')">Alışverişe Başla</button></div>
     </div>
   </section>
 </div>
@@ -1260,7 +508,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
       <div class="hikaye-yazi">
         <p class="ust-yazi">Bizim Hikayemiz</p>
         <h2>1990'dan Bu Yana Yanınızdayız</h2>
-        <p>Aykut Giyim olarak 1990 yılından bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz. Modayı takip eden, kaliteden ödün vermeyen müşterilerimiz için en özel tasarımları bir araya getiriyoruz.</p><br>
+        <p>Aykut Giyim olarak 1990 yılından bu yana Bursa'dan tüm Türkiye'ye kaliteli kadın giyim ürünleri sunuyoruz.</p><br>
         <p>Her sezon yenilenen koleksiyonumuzla trendleri yakından takip ediyor, uygun fiyat politikamızla kaliteyi herkese ulaştırmayı hedefliyoruz.</p>
       </div>
       <div class="hikaye-resim"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Mağaza"></div>
@@ -1300,26 +548,24 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   </section>
 </div>
 
-<!-- KARGO & İADE -->
+<!-- KARGO -->
 <div id="sayfa-kargo" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Kargo & İade</h1></div>
   <section class="bolum">
     <div class="bilgi-grid">
-      <div class="bilgi-kart"><div class="bilgi-ikon">🚚</div><h3>Kargo Bilgileri</h3><ul><li>500 TL üzeri ücretsiz kargo</li><li>500 TL altı 49 TL kargo ücreti</li><li>1-3 iş günü içinde kargoya verilir</li><li>2-4 iş günü teslimat süresi</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">↩️</div><h3>İade Koşulları</h3><ul><li>Teslimden itibaren 14 gün iade hakkı</li><li>Ürünler kullanılmamış ve etiketli olmalı</li><li>İade kargo ücreti müşteriye aittir</li><li>Para iadesi 3-5 iş günü içinde yapılır</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">💳</div><h3>Ödeme Seçenekleri</h3><ul><li>Kapıda ödeme (nakit veya kart)</li><li>Havale / EFT</li><li>Kredi kartı ile online ödeme</li><li>3'e kadar taksit imkanı</li></ul></div>
-      <div class="bilgi-kart"><div class="bilgi-ikon">📦</div><h3>Sipariş Takibi</h3><ul><li>Sipariş onayı e-posta ile bildirilir</li><li>Kargo takip numarası SMS ile gönderilir</li><li>WhatsApp üzerinden destek alabilirsiniz</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">🚚</div><h3>Kargo Bilgileri</h3><ul><li>500 TL üzeri ücretsiz kargo</li><li>500 TL altı 49 TL kargo ücreti</li><li>1-3 iş günü kargoya verilir</li><li>2-4 iş günü teslimat</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">↩️</div><h3>İade Koşulları</h3><ul><li>14 gün içinde iade hakkı</li><li>Ürünler kullanılmamış olmalı</li><li>İade kargo ücreti müşteriye ait</li><li>Para iadesi 3-5 iş günü</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">💳</div><h3>Ödeme Seçenekleri</h3><ul><li>Kapıda ödeme</li><li>Havale / EFT</li><li>Kredi kartı</li><li>3'e kadar taksit</li></ul></div>
+      <div class="bilgi-kart"><div class="bilgi-ikon">📦</div><h3>Sipariş Takibi</h3><ul><li>E-posta ile sipariş onayı</li><li>SMS ile kargo takibi</li><li>WhatsApp destek</li></ul></div>
     </div>
   </section>
 </div>
 
-  <!-- PROFİL -->
+<!-- PROFİL -->
 <div id="sayfa-profil" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Profilim</h1></div>
   <section class="profil-bolum">
     <div class="profil-grid">
-
-      <!-- Sol Menü -->
       <div class="profil-menu">
         <div class="profil-avatar">
           <div class="avatar-daire">👤</div>
@@ -1327,96 +573,52 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
           <p>oktyaykt7@gmail.com</p>
         </div>
         <nav class="profil-nav">
-          <a href="#" class="profil-nav-link aktif-profil" onclick="profilSekme('hesap', this)">👤 Hesap Bilgilerim</a>
-          <a href="#" class="profil-nav-link" onclick="profilSekme('siparisler', this)">📦 Siparişlerim</a>
-          <a href="#" class="profil-nav-link" onclick="profilSekme('adresler', this)">📍 Adreslerim</a>
-          <a href="#" class="profil-nav-link" onclick="profilSekme('odeme', this)">💳 Ödeme Yöntemlerim</a>
-          <a href="#" class="profil-nav-link" onclick="profilSekme('guvenlik', this)">🔐 Güvenlik</a>
-          <a href="#" class="profil-nav-link" onclick="profilSekme('bildirimler', this)">🔔 Bildirimler</a>
+          <a href="#" class="profil-nav-link aktif-profil" onclick="profilSekme('hesap',this)">👤 Hesap Bilgilerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('siparisler',this)">📦 Siparişlerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('adresler',this)">📍 Adreslerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('odeme',this)">💳 Ödeme Yöntemlerim</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('guvenlik',this)">🔐 Güvenlik</a>
+          <a href="#" class="profil-nav-link" onclick="profilSekme('bildirimler',this)">🔔 Bildirimler</a>
           <a href="#" class="profil-nav-link cikis" onclick="cikisYap()">🚪 Çıkış Yap</a>
         </nav>
       </div>
-
-      <!-- Sağ İçerik -->
       <div class="profil-icerik">
-
-        <!-- Hesap Bilgileri -->
         <div id="profil-hesap" class="profil-sekme aktif-sekme">
           <h2 class="profil-baslik">Hesap Bilgilerim</h2>
           <div class="form-grup">
             <div class="form-satir">
-              <div class="form-alan">
-                <label>Ad</label>
-                <input type="text" value="Oktay">
-              </div>
-              <div class="form-alan">
-                <label>Soyad</label>
-                <input type="text" value="Aykut">
-              </div>
+              <div class="form-alan"><label>Ad</label><input type="text" value="Oktay"></div>
+              <div class="form-alan"><label>Soyad</label><input type="text" value="Aykut"></div>
             </div>
-            <div class="form-alan">
-              <label>E-posta Adresi</label>
-              <input type="email" value="oktyaykt7@gmail.com">
-            </div>
-            <div class="form-alan">
-              <label>Telefon Numarası</label>
-              <input type="tel" value="05384602192">
-            </div>
-            <div class="form-alan">
-              <label>Doğum Tarihi</label>
-              <input type="date" value="1990-01-01">
-            </div>
-            <div class="form-alan">
-              <label>Cinsiyet</label>
-              <select>
-                <option>Belirtmek istemiyorum</option>
-                <option>Kadın</option>
-                <option selected>Erkek</option>
-              </select>
-            </div>
+            <div class="form-alan"><label>E-posta</label><input type="email" value="oktyaykt7@gmail.com"></div>
+            <div class="form-alan"><label>Telefon</label><input type="tel" value="05384602192"></div>
+            <div class="form-alan"><label>Doğum Tarihi</label><input type="date" value="1990-01-01"></div>
             <button class="profil-kaydet-btn" onclick="bilgiKaydet()">Bilgileri Kaydet</button>
             <div class="kaydet-mesaj" id="kaydet-mesaj">✅ Bilgileriniz güncellendi!</div>
           </div>
         </div>
-
-        <!-- Siparişler -->
         <div id="profil-siparisler" class="profil-sekme">
           <h2 class="profil-baslik">Siparişlerim</h2>
           <div class="siparis-kart">
-            <div class="siparis-ust">
-              <span class="siparis-no">#SP2026001</span>
-              <span class="siparis-durum teslim">Teslim Edildi</span>
-            </div>
+            <div class="siparis-ust"><span class="siparis-no">#SP2026001</span><span class="siparis-durum teslim">Teslim Edildi</span></div>
             <p class="siparis-tarih">15 Eylül 2026</p>
             <p class="siparis-urun">Elegant Elbise × 1</p>
             <p class="siparis-fiyat">799 TL</p>
           </div>
           <div class="siparis-kart">
-            <div class="siparis-ust">
-              <span class="siparis-no">#SP2026002</span>
-              <span class="siparis-durum kargo">Kargoda</span>
-            </div>
+            <div class="siparis-ust"><span class="siparis-no">#SP2026002</span><span class="siparis-durum kargo">Kargoda</span></div>
             <p class="siparis-tarih">20 Eylül 2026</p>
             <p class="siparis-urun">Siyah Blazer × 1, Kaşmir Kazak × 1</p>
             <p class="siparis-fiyat">1.498 TL</p>
           </div>
-          <div class="siparis-bos">
-            <p style="color:#bbb; font-size:13px; margin-top:16px;">Daha fazla sipariş bulunmuyor.</p>
-          </div>
         </div>
-
-        <!-- Adresler -->
         <div id="profil-adresler" class="profil-sekme">
           <h2 class="profil-baslik">Adreslerim</h2>
           <div class="adres-kart">
-            <div class="adres-ust">
-              <span class="adres-etiket">🏠 Ev Adresi</span>
-              <span class="varsayilan-etiket">Varsayılan</span>
-            </div>
+            <div class="adres-ust"><span class="adres-etiket">🏠 Ev Adresi</span><span class="varsayilan-etiket">Varsayılan</span></div>
             <p>Oktay Aykut</p>
             <p>Nilüfer Mahallesi, Atatürk Caddesi No:12</p>
             <p>Nilüfer / Bursa</p>
-            <p>05384602192</p>
             <div class="adres-butonlar">
               <button class="adres-btn">Düzenle</button>
               <button class="adres-btn sil">Sil</button>
@@ -1424,72 +626,38 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
           </div>
           <button class="yeni-adres-btn">+ Yeni Adres Ekle</button>
         </div>
-
-        <!-- Ödeme Yöntemleri -->
         <div id="profil-odeme" class="profil-sekme">
           <h2 class="profil-baslik">Ödeme Yöntemlerim</h2>
-          <div class="kart-listesi">
-            <div class="kredi-kart">
-              <div class="kart-ust">
-                <span class="kart-tip">💳 VISA</span>
-                <span class="kart-varsayilan">Varsayılan</span>
-              </div>
-              <p class="kart-no">**** **** **** 4417</p>
-              <p class="kart-ad">OKTAY AYKUT</p>
-              <p class="kart-son">Son Kullanma: 12/28</p>
-              <button class="adres-btn sil" style="margin-top:12px;">Kartı Sil</button>
-            </div>
+          <div class="kredi-kart">
+            <div class="kart-ust"><span class="kart-tip">💳 VISA</span><span class="kart-varsayilan">Varsayılan</span></div>
+            <p class="kart-no">**** **** **** 4417</p>
+            <p class="kart-ad">OKTAY AYKUT</p>
+            <p class="kart-son">Son Kullanma: 12/28</p>
           </div>
           <button class="yeni-adres-btn">+ Yeni Kart Ekle</button>
         </div>
-
-        <!-- Güvenlik -->
         <div id="profil-guvenlik" class="profil-sekme">
           <h2 class="profil-baslik">Güvenlik Ayarları</h2>
           <div class="guvenlik-bolum">
             <h4>Şifre Değiştir</h4>
             <div class="form-grup">
-              <div class="form-alan">
-                <label>Mevcut Şifre</label>
-                <input type="password" placeholder="••••••••">
-              </div>
-              <div class="form-alan">
-                <label>Yeni Şifre</label>
-                <input type="password" placeholder="••••••••">
-              </div>
-              <div class="form-alan">
-                <label>Yeni Şifre (Tekrar)</label>
-                <input type="password" placeholder="••••••••">
-              </div>
+              <div class="form-alan"><label>Mevcut Şifre</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-alan"><label>Yeni Şifre</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-alan"><label>Yeni Şifre (Tekrar)</label><input type="password" placeholder="••••••••"></div>
               <button class="profil-kaydet-btn">Şifreyi Güncelle</button>
             </div>
           </div>
           <div class="guvenlik-bolum">
             <h4>İki Faktörlü Doğrulama</h4>
-            <p style="color:#888; font-size:14px; margin:8px 0 16px;">Hesabınızı daha güvenli hale getirmek için SMS doğrulamasını aktifleştirin.</p>
-            <div class="toggle-satir">
-              <span>SMS Doğrulama</span>
-              <label class="toggle">
-                <input type="checkbox">
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-            <div class="toggle-satir">
-              <span>E-posta Doğrulama</span>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
+            <div class="toggle-satir"><span>SMS Doğrulama</span><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            <div class="toggle-satir"><span>E-posta Doğrulama</span><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
           </div>
           <div class="guvenlik-bolum tehlike">
             <h4>⚠️ Tehlikeli Bölge</h4>
-            <p style="color:#888; font-size:14px; margin:8px 0 16px;">Bu işlemler geri alınamaz. Dikkatli olun.</p>
+            <p style="color:#888;font-size:14px;margin-bottom:16px;">Bu işlemler geri alınamaz.</p>
             <button class="tehlike-btn">Hesabı Sil</button>
           </div>
         </div>
-
-        <!-- Bildirimler -->
         <div id="profil-bildirimler" class="profil-sekme">
           <h2 class="profil-baslik">Bildirim Tercihleri</h2>
           <div class="guvenlik-bolum">
@@ -1506,19 +674,19 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
           <button class="profil-kaydet-btn" onclick="bildirimKaydet()">Tercihleri Kaydet</button>
           <div class="kaydet-mesaj" id="bildirim-mesaj">✅ Tercihleriniz kaydedildi!</div>
         </div>
-
       </div>
     </div>
   </section>
 </div>
-  <!-- ÖDEME -->
+
+<!-- ÖDEME -->
 <div id="sayfa-odeme" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Ödeme</h1></div>
   <section class="iletisim-bolum">
     <div class="iletisim-grid">
       <div>
-        <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--kahve); margin-bottom:24px; font-style:italic;">Teslimat Bilgileri</h3>
-        <div class="form-grup">
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--kahve);margin-bottom:24px;font-style:italic;">Teslimat Bilgileri</h3>
+        <div class="form-grup" style="margin-bottom:32px;">
           <div class="form-satir">
             <div class="form-alan"><label>Ad</label><input type="text" placeholder="Adınız"></div>
             <div class="form-alan"><label>Soyad</label><input type="text" placeholder="Soyadınız"></div>
@@ -1530,8 +698,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
             <div class="form-alan"><label>Şehir</label><input type="text" placeholder="Şehir"></div>
           </div>
         </div>
-
-        <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--kahve); margin:32px 0 24px; font-style:italic;">Ödeme Bilgileri</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--kahve);margin-bottom:24px;font-style:italic;">Ödeme Bilgileri</h3>
         <div class="form-grup">
           <div class="form-alan"><label>Kart Üzerindeki İsim</label><input type="text" placeholder="Ad Soyad"></div>
           <div class="form-alan"><label>Kart Numarası</label><input type="text" placeholder="**** **** **** ****" maxlength="19" oninput="kartFormatla(this)"></div>
@@ -1546,18 +713,19 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
           <button class="profil-kaydet-btn" onclick="odemeYap()" style="width:100%;text-align:center;">Ödemeyi Tamamla 🔒</button>
         </div>
       </div>
-
       <div>
-        <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--kahve); margin-bottom:24px; font-style:italic;">Sipariş Özeti</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--kahve);margin-bottom:24px;font-style:italic;">Sipariş Özeti</h3>
         <div id="odeme-ozet" class="sepet-toplam"></div>
+        <button class="tumu-btn" onclick="sayfaGoster('sepet')" style="width:100%;margin-top:16px;text-align:center;">← Sepete Dön</button>
       </div>
     </div>
   </section>
 </div>
+
 <!-- SEPET -->
 <div id="sayfa-sepet" class="sayfa">
   <div class="sayfa-baslik-bolum"><h1>Sepetim</h1></div>
-  <section class="bolum">
+  <section class="bolum" id="sepet-icerik">
     <div class="sepet-bos">
       <p>🛍️</p>
       <h3>Sepetiniz henüz boş</h3>
@@ -1567,12 +735,11 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   </section>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-ust">
     <div>
       <div class="footer-logo">AYKUT GİYİM</div>
-      <p class="footer-aciklama">Bursa'dan Türkiye'ye, 1990'dan bu yana kaliteli kadın giyim. Özgün tasarım, yüksek kalite, uygun fiyat.</p>
+      <p class="footer-aciklama">Bursa'dan Türkiye'ye, 1990'dan bu yana kaliteli kadın giyim.</p>
     </div>
     <div>
       <p class="footer-baslik">Sayfalar</p>
@@ -1599,36 +766,35 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 <div class="bildirim" id="bildirim">🛒 Ürün sepete eklendi!</div>
 
 <script>
-// Sayfa Geçişi
 function sayfaGoster(sayfa) {
   document.querySelectorAll('.sayfa').forEach(s => s.classList.remove('aktif-sayfa'));
   document.getElementById('sayfa-' + sayfa).classList.add('aktif-sayfa');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (sayfa === 'odeme') odemeOzetGuncelle();
   initReveal();
 }
 
-// Menü
 function menuAc() { document.getElementById('mobil-menu').classList.add('acik'); }
 function menuKapat() { document.getElementById('mobil-menu').classList.remove('acik'); }
-
-// Arama
 function aramaAc() { document.getElementById('arama-overlay').classList.add('acik'); document.getElementById('arama-input').focus(); }
 function aramaKapat() { document.getElementById('arama-overlay').classList.remove('acik'); }
+function favorilerAc() { alert('Favoriler özelliği yakında! 🤍'); }
 
-// Sepet
 let sepetSayisi = 0;
 let sepetUrunler = [];
 
 function sepeteEkle(btn) {
   const kart = btn.closest('.urun-kart');
   const isim = kart.querySelector('h3').textContent;
-  const fiyat = kart.querySelector('.yeni-fiyat') ? kart.querySelector('.yeni-fiyat').textContent : kart.querySelector('p').textContent;
+  const fiyatEl = kart.querySelector('.yeni-fiyat') || kart.querySelector('p');
+  const fiyat = fiyatEl.textContent.trim();
+  const resim = kart.querySelector('img').src;
 
   const mevcutUrun = sepetUrunler.find(u => u.isim === isim);
   if (mevcutUrun) {
     mevcutUrun.adet++;
   } else {
-    sepetUrunler.push({ isim, fiyat, adet: 1 });
+    sepetUrunler.push({ isim, fiyat, resim, adet: 1 });
   }
 
   sepetSayisi++;
@@ -1642,8 +808,7 @@ function sepeteEkle(btn) {
 }
 
 function sepetGuncelle() {
-  const sepetBolum = document.getElementById('sayfa-sepet');
-  const bolum = sepetBolum.querySelector('.bolum');
+  const bolum = document.getElementById('sepet-icerik');
 
   if (sepetUrunler.length === 0) {
     bolum.innerHTML = `
@@ -1658,7 +823,7 @@ function sepetGuncelle() {
 
   let toplam = 0;
   let urunlerHTML = sepetUrunler.map(u => {
-    const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', ''));
+    const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', '').replace(/\D/g, ''));
     toplam += fiyatSayi * u.adet;
     return `
       <div class="sepet-urun-kart">
@@ -1677,68 +842,17 @@ function sepetGuncelle() {
       </div>`;
   }).join('');
 
-  const kargoUcreti = toplam >= 500 ? 0 : 49;
-  const genelToplam = toplam + kargoUcreti;
-
-  bolum.innerHTML = `
-    <div class="sepet-liste">
-      <div class="sepet-urunler">
-        ${urunlerHTML}
-      </div>
-      <div class="sepet-toplam">
-        <div class="sepet-toplam-satir">
-          <span>Ara Toplam</span>
-          <span>${toplam.toLocaleString('tr-TR')} TL</span>
-        </div>
-        <div class="sepet-toplam-satir">
-          <span>Kargo</span>
-          <span>${kargoUcreti === 0 ? '<span style="color:#2e7d32">Ücretsiz</span>' : '49 TL'}</span>
-        </div>
-        <div class="sepet-toplam-satir toplam-buyuk">
-          <span>Toplam</span>
-          <span>${genelToplam.toLocaleString('tr-TR')} TL</span>
-        </div>
-        <button class="profil-kaydet-btn" onclick="sayfaGoster('odeme')" style="width:100%;text-align:center;margin-top:16px;">Ödemeye Geç →</button>
-      </div>
-    </div>`;
-}
-
-  let toplam = 0;
-  let urunlerHTML = sepetUrunler.map(u => {
-    const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', ''));
-    toplam += fiyatSayi * u.adet;
-    return `
-      <div class="sepet-urun-kart">
-        <div class="sepet-urun-bilgi">
-          <h4>${u.isim}</h4>
-          <p>${u.fiyat}</p>
-        </div>
-        <div class="sepet-urun-adet">
-          <button onclick="adetAzalt('${u.isim}')">−</button>
-          <span>${u.adet}</span>
-          <button onclick="adetArtir('${u.isim}')">+</button>
-        </div>
-        <button class="sepet-sil-btn" onclick="urunSil('${u.isim}')">✕</button>
-      </div>`;
-  }).join('');
+  const kargo = toplam >= 500 ? 0 : 49;
+  const genelToplam = toplam + kargo;
 
   bolum.innerHTML = `
     <div class="sepet-liste">
       ${urunlerHTML}
       <div class="sepet-toplam">
-        <div class="sepet-toplam-satir">
-          <span>Ara Toplam</span>
-          <span>${toplam.toLocaleString('tr-TR')} TL</span>
-        </div>
-        <div class="sepet-toplam-satir">
-          <span>Kargo</span>
-          <span>${toplam >= 500 ? '<span style="color:#2e7d32">Ücretsiz</span>' : '49 TL'}</span>
-        </div>
-        <div class="sepet-toplam-satir toplam-buyuk">
-          <span>Toplam</span>
-          <span>${(toplam >= 500 ? toplam : toplam + 49).toLocaleString('tr-TR')} TL</span>
-        </div>
-        <button class="profil-kaydet-btn" style="width:100%; text-align:center; margin-top:16px;">Ödemeye Geç</button>
+        <div class="sepet-toplam-satir"><span>Ara Toplam</span><span>${toplam.toLocaleString('tr-TR')} TL</span></div>
+        <div class="sepet-toplam-satir"><span>Kargo</span><span>${kargo === 0 ? '<span style="color:#2e7d32">Ücretsiz</span>' : '49 TL'}</span></div>
+        <div class="sepet-toplam-satir toplam-buyuk"><span>Toplam</span><span>${genelToplam.toLocaleString('tr-TR')} TL</span></div>
+        <button class="profil-kaydet-btn" onclick="sayfaGoster('odeme')" style="width:100%;text-align:center;margin-top:16px;">Ödemeye Geç →</button>
       </div>
     </div>`;
 }
@@ -1761,14 +875,54 @@ function urunSil(isim) {
   sepetGuncelle();
 }
 
-// İletişim
+function odemeOzetGuncelle() {
+  const ozetEl = document.getElementById('odeme-ozet');
+  if (!ozetEl || sepetUrunler.length === 0) { if(ozetEl) ozetEl.innerHTML = '<p style="color:#999;font-size:14px;">Sepetiniz boş.</p>'; return; }
+  let toplam = 0;
+  let html = '';
+  sepetUrunler.forEach(u => {
+    const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', '').replace(/\D/g, ''));
+    toplam += fiyatSayi * u.adet;
+    html += `<div class="sepet-toplam-satir"><span>${u.isim} × ${u.adet}</span><span>${(fiyatSayi * u.adet).toLocaleString('tr-TR')} TL</span></div>`;
+  });
+  const kargo = toplam >= 500 ? 0 : 49;
+  html += `<div class="sepet-toplam-satir"><span>Kargo</span><span>${kargo === 0 ? 'Ücretsiz' : '49 TL'}</span></div>`;
+  html += `<div class="sepet-toplam-satir toplam-buyuk"><span>Toplam</span><span>${(toplam + kargo).toLocaleString('tr-TR')} TL</span></div>`;
+  ozetEl.innerHTML = html;
+}
+
+function kartFormatla(input) {
+  let val = input.value.replace(/\D/g, '').substring(0, 16);
+  input.value = val.replace(/(.{4})/g, '$1 ').trim();
+}
+
+function odemeYap() {
+  const inputs = document.querySelectorAll('#sayfa-odeme input');
+  let dolu = true;
+  inputs.forEach(f => { if (!f.value) dolu = false; });
+  if (!dolu) { alert('Lütfen tüm alanları doldurun!'); return; }
+
+  document.querySelector('#sayfa-odeme .iletisim-bolum').innerHTML = `
+    <div style="text-align:center;padding:80px 20px;">
+      <div style="font-size:60px;margin-bottom:20px;">✅</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:32px;color:var(--kahve);margin-bottom:16px;font-style:italic;">Siparişiniz Alındı!</h2>
+      <p style="color:#888;font-size:15px;margin-bottom:8px;">Sipariş onayınız e-posta adresinize gönderildi.</p>
+      <p style="color:#888;font-size:15px;margin-bottom:32px;">Kargo takip bilgisi SMS ile iletilecektir.</p>
+      <button class="profil-kaydet-btn" onclick="sayfaGoster('anasayfa')">Ana Sayfaya Dön</button>
+    </div>`;
+
+  sepetUrunler = [];
+  sepetSayisi = 0;
+  document.querySelector('.sepet-sayi').textContent = 0;
+  sepetGuncelle();
+}
+
 function mesajGonder() {
   const el = document.getElementById('basarili');
   el.style.display = 'block';
   setTimeout(() => el.style.display = 'none', 3500);
 }
 
-// Filtre
 function filtrele(kategori, btn) {
   document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('aktif-filtre'));
   btn.classList.add('aktif-filtre');
@@ -1777,10 +931,29 @@ function filtrele(kategori, btn) {
   });
 }
 
-// Favoriler
-function favorilerAc() { alert('Favoriler özelliği yakında eklenecek! 🤍'); }
+function profilSekme(sekme, link) {
+  document.querySelectorAll('.profil-sekme').forEach(s => s.classList.remove('aktif-sekme'));
+  document.querySelectorAll('.profil-nav-link').forEach(l => l.classList.remove('aktif-profil'));
+  document.getElementById('profil-' + sekme).classList.add('aktif-sekme');
+  link.classList.add('aktif-profil');
+}
 
-// Hero Slider
+function bilgiKaydet() {
+  const el = document.getElementById('kaydet-mesaj');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 3000);
+}
+
+function bildirimKaydet() {
+  const el = document.getElementById('bildirim-mesaj');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 3000);
+}
+
+function cikisYap() {
+  if (confirm('Çıkış yapmak istediğinize emin misiniz?')) sayfaGoster('anasayfa');
+}
+
 const heroSlides = document.querySelectorAll('.hero-slide');
 const dotsContainer = document.getElementById('hero-dots');
 let heroIndex = 0;
@@ -1800,105 +973,22 @@ function goToSlide(index) {
   document.querySelectorAll('.hero-dot')[heroIndex].classList.add('aktif');
 }
 
-setInterval(() => {
-  goToSlide((heroIndex + 1) % heroSlides.length);
-}, 5000);
+setInterval(() => goToSlide((heroIndex + 1) % heroSlides.length), 5000);
 
-// Scroll Reveal
 function initReveal() {
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 }
 initReveal();
 
-// Header Scroll
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
   if (window.scrollY > 50) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 });
-  // Profil Sekme Geçişi
-function profilSekme(sekme, link) {
-  document.querySelectorAll('.profil-sekme').forEach(s => s.classList.remove('aktif-sekme'));
-  document.querySelectorAll('.profil-nav-link').forEach(l => l.classList.remove('aktif-profil'));
-  document.getElementById('profil-' + sekme).classList.add('aktif-sekme');
-  link.classList.add('aktif-profil');
-}
-
-// Bilgi Kaydet
-function bilgiKaydet() {
-  const el = document.getElementById('kaydet-mesaj');
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 3000);
-}
-
-// Bildirim Kaydet
-function bildirimKaydet() {
-  const el = document.getElementById('bildirim-mesaj');
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 3000);
-}
-
-// Çıkış Yap
-function cikisYap() {
-  if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
-    sayfaGoster('anasayfa');
-  }
-}
-  function kartFormatla(input) {
-  let val = input.value.replace(/\D/g, '').substring(0, 16);
-  input.value = val.replace(/(.{4})/g, '$1 ').trim();
-}
-
-function odemeYap() {
-  const odemeSayfasi = document.getElementById('sayfa-odeme');
-  const form = odemeSayfasi.querySelectorAll('input');
-  let dolu = true;
-  form.forEach(f => { if (!f.value) dolu = false; });
-  if (!dolu) { alert('Lütfen tüm alanları doldurun!'); return; }
-
-  odemeSayfasi.querySelector('.iletisim-bolum').innerHTML = `
-    <div style="text-align:center; padding:80px 20px;">
-      <div style="font-size:60px; margin-bottom:20px;">✅</div>
-      <h2 style="font-family:'Playfair Display',serif; font-size:32px; color:var(--kahve); margin-bottom:16px; font-style:italic;">Siparişiniz Alındı!</h2>
-      <p style="color:#888; font-size:15px; margin-bottom:8px;">Sipariş onayınız e-posta adresinize gönderildi.</p>
-      <p style="color:#888; font-size:15px; margin-bottom:32px;">Kargo takip bilgisi SMS ile iletilecektir.</p>
-      <button class="profil-kaydet-btn" onclick="sayfaGoster('anasayfa')">Ana Sayfaya Dön</button>
-    </div>`;
-
-  sepetUrunler = [];
-  sepetSayisi = 0;
-  document.querySelector('.sepet-sayi').textContent = 0;
-  sepetGuncelle();
-}
-
-// Ödeme sayfası özeti
-const eskiSayfaGoster = sayfaGoster;
-sayfaGoster = function(sayfa) {
-  eskiSayfaGoster(sayfa);
-  if (sayfa === 'odeme') {
-    const ozetEl = document.getElementById('odeme-ozet');
-    if (!ozetEl) return;
-    let toplam = 0;
-    let html = '';
-    sepetUrunler.forEach(u => {
-      const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', ''));
-      toplam += fiyatSayi * u.adet;
-      html += `<div class="sepet-toplam-satir"><span>${u.isim} × ${u.adet}</span><span>${(fiyatSayi * u.adet).toLocaleString('tr-TR')} TL</span></div>`;
-    });
-    const kargo = toplam >= 500 ? 0 : 49;
-    html += `<div class="sepet-toplam-satir"><span>Kargo</span><span>${kargo === 0 ? 'Ücretsiz' : '49 TL'}</span></div>`;
-    html += `<div class="sepet-toplam-satir toplam-buyuk"><span>Toplam</span><span>${(toplam + kargo).toLocaleString('tr-TR')} TL</span></div>`;
-    ozetEl.innerHTML = html;
-  }
-};
 </script>
 </body>
 </html>
