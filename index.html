@@ -1069,6 +1069,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
     <a href="#" onclick="sayfaGoster('hakkimizda'); menuKapat()">Hakkımızda</a>
     <a href="#" onclick="sayfaGoster('iletisim'); menuKapat()">İletişim</a>
     <a href="#" onclick="sayfaGoster('kargo'); menuKapat()">Kargo & İade</a>
+    <a href="#" onclick="sayfaGoster('profil'); menuKapat()">👤 Profilim</a>
   </nav>
 </div>
 
@@ -1079,6 +1080,7 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   <a href="#" onclick="sayfaGoster('hakkimizda')">Hakkımızda</a>
   <a href="#" onclick="sayfaGoster('iletisim')">İletişim</a>
   <a href="#" onclick="sayfaGoster('kargo')">Kargo & İade</a>
+  <a href="#" onclick="sayfaGoster('profil')">Profilim</a>
 </div>
 
 <!-- ANA SAYFA -->
@@ -1623,6 +1625,34 @@ window.addEventListener('scroll', () => {
   if (window.scrollY > 50) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 });
+  // Profil Sekme Geçişi
+function profilSekme(sekme, link) {
+  document.querySelectorAll('.profil-sekme').forEach(s => s.classList.remove('aktif-sekme'));
+  document.querySelectorAll('.profil-nav-link').forEach(l => l.classList.remove('aktif-profil'));
+  document.getElementById('profil-' + sekme).classList.add('aktif-sekme');
+  link.classList.add('aktif-profil');
+}
+
+// Bilgi Kaydet
+function bilgiKaydet() {
+  const el = document.getElementById('kaydet-mesaj');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 3000);
+}
+
+// Bildirim Kaydet
+function bildirimKaydet() {
+  const el = document.getElementById('bildirim-mesaj');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 3000);
+}
+
+// Çıkış Yap
+function cikisYap() {
+  if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+    sayfaGoster('anasayfa');
+  }
+}
 </script>
 </body>
 </html>
