@@ -1033,6 +1033,22 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   .form-satir { grid-template-columns: 1fr; }
   .profil-bolum { padding: 40px 20px; }
 }
+  /* SEPET ÜRÜNLER */
+.sepet-liste { max-width: 700px; margin: 0 auto; }
+.sepet-urun-kart { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #f0ebe5; gap: 16px; }
+.sepet-urun-bilgi { flex: 1; }
+.sepet-urun-bilgi h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--kahve); margin-bottom: 4px; }
+.sepet-urun-bilgi p { color: var(--yazi-acik); font-size: 14px; }
+.sepet-urun-adet { display: flex; align-items: center; gap: 12px; }
+.sepet-urun-adet button { background: none; border: 1px solid #ddd; width: 28px; height: 28px; cursor: pointer; font-size: 16px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+.sepet-urun-adet button:hover { border-color: var(--kahve); color: var(--kahve); }
+.sepet-urun-adet span { font-size: 15px; font-weight: 600; min-width: 20px; text-align: center; }
+.sepet-sil-btn { background: none; border: none; color: #ccc; font-size: 16px; cursor: pointer; transition: color 0.3s; padding: 4px 8px; }
+.sepet-sil-btn:hover { color: #e74c3c; }
+.sepet-toplam { margin-top: 32px; padding: 28px; background: var(--krem); border: 1px solid #f0ebe5; }
+.sepet-toplam-satir { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14px; color: var(--yazi-acik); border-bottom: 1px solid #f0ebe5; }
+.sepet-toplam-satir:last-of-type { border-bottom: none; }
+.toplam-buyuk { font-size: 18px; font-weight: 700; color: var(--kahve); font-family: 'Playfair Display', serif; }
 </style>
 </head>
 <body>
@@ -1045,11 +1061,12 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
 
 <header id="header">
   <div class="header-sol"><button class="menu-btn" onclick="menuAc()">☰</button></div>
-  <div class="logo">AYKUT GİYİM</div>
+  <div class="logo" onclick="sayfaGoster('anasayfa')" style="cursor:pointer;">AYKUT GİYİM</div>
   <div class="header-sag">
     <button class="ikon-btn" onclick="aramaAc()">🔍</button>
     <button class="ikon-btn" onclick="favorilerAc()">♡</button>
-    <button class="ikon-btn" onclick="sayfaGoster('sepet')">🛒 <span class="sepet-sayi">0</span></button>
+    <button class="ikon-btn" onclick="sayfaGoster('profil')">👤</button>
+<button class="ikon-btn" onclick="sayfaGoster('sepet')">🛒 <span class="sepet-sayi">0</span></button>
   </div>
 </header>
 
@@ -1554,12 +1571,101 @@ function aramaKapat() { document.getElementById('arama-overlay').classList.remov
 
 // Sepet
 let sepetSayisi = 0;
+let sepetUrunler = [];
+
 function sepeteEkle(btn) {
+  const kart = btn.closest('.urun-kart');
+  const isim = kart.querySelector('h3').textContent;
+  const fiyat = kart.querySelector('.yeni-fiyat') ? kart.querySelector('.yeni-fiyat').textContent : kart.querySelector('p').textContent;
+
+  const mevcutUrun = sepetUrunler.find(u => u.isim === isim);
+  if (mevcutUrun) {
+    mevcutUrun.adet++;
+  } else {
+    sepetUrunler.push({ isim, fiyat, adet: 1 });
+  }
+
   sepetSayisi++;
   document.querySelector('.sepet-sayi').textContent = sepetSayisi;
+
   const bildirim = document.getElementById('bildirim');
   bildirim.classList.add('goster');
   setTimeout(() => bildirim.classList.remove('goster'), 2800);
+
+  sepetGuncelle();
+}
+
+function sepetGuncelle() {
+  const sepetBolum = document.getElementById('sayfa-sepet');
+  const bolum = sepetBolum.querySelector('.bolum');
+
+  if (sepetUrunler.length === 0) {
+    bolum.innerHTML = `
+      <div class="sepet-bos">
+        <p>🛍️</p>
+        <h3>Sepetiniz henüz boş</h3>
+        <p class="alt">Koleksiyonumuzu keşfedin, beğendiklerinizi sepete ekleyin.</p>
+        <button onclick="sayfaGoster('urunler')">Alışverişe Başla</button>
+      </div>`;
+    return;
+  }
+
+  let toplam = 0;
+  let urunlerHTML = sepetUrunler.map(u => {
+    const fiyatSayi = parseInt(u.fiyat.replace(/\./g, '').replace(' TL', ''));
+    toplam += fiyatSayi * u.adet;
+    return `
+      <div class="sepet-urun-kart">
+        <div class="sepet-urun-bilgi">
+          <h4>${u.isim}</h4>
+          <p>${u.fiyat}</p>
+        </div>
+        <div class="sepet-urun-adet">
+          <button onclick="adetAzalt('${u.isim}')">−</button>
+          <span>${u.adet}</span>
+          <button onclick="adetArtir('${u.isim}')">+</button>
+        </div>
+        <button class="sepet-sil-btn" onclick="urunSil('${u.isim}')">✕</button>
+      </div>`;
+  }).join('');
+
+  bolum.innerHTML = `
+    <div class="sepet-liste">
+      ${urunlerHTML}
+      <div class="sepet-toplam">
+        <div class="sepet-toplam-satir">
+          <span>Ara Toplam</span>
+          <span>${toplam.toLocaleString('tr-TR')} TL</span>
+        </div>
+        <div class="sepet-toplam-satir">
+          <span>Kargo</span>
+          <span>${toplam >= 500 ? '<span style="color:#2e7d32">Ücretsiz</span>' : '49 TL'}</span>
+        </div>
+        <div class="sepet-toplam-satir toplam-buyuk">
+          <span>Toplam</span>
+          <span>${(toplam >= 500 ? toplam : toplam + 49).toLocaleString('tr-TR')} TL</span>
+        </div>
+        <button class="profil-kaydet-btn" style="width:100%; text-align:center; margin-top:16px;">Ödemeye Geç</button>
+      </div>
+    </div>`;
+}
+
+function adetArtir(isim) {
+  const urun = sepetUrunler.find(u => u.isim === isim);
+  if (urun) { urun.adet++; sepetSayisi++; document.querySelector('.sepet-sayi').textContent = sepetSayisi; sepetGuncelle(); }
+}
+
+function adetAzalt(isim) {
+  const urun = sepetUrunler.find(u => u.isim === isim);
+  if (urun && urun.adet > 1) { urun.adet--; sepetSayisi--; document.querySelector('.sepet-sayi').textContent = sepetSayisi; sepetGuncelle(); }
+  else urunSil(isim);
+}
+
+function urunSil(isim) {
+  const urun = sepetUrunler.find(u => u.isim === isim);
+  if (urun) { sepetSayisi -= urun.adet; document.querySelector('.sepet-sayi').textContent = sepetSayisi; }
+  sepetUrunler = sepetUrunler.filter(u => u.isim !== isim);
+  sepetGuncelle();
 }
 
 // İletişim
