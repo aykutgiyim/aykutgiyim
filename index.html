@@ -952,6 +952,87 @@ footer { background: var(--kahve); color: var(--beyaz); padding: 72px 48px; }
   .footer-ust { grid-template-columns: 1fr; gap: 32px; }
   .hikaye-resim::before { display: none; }
 }
+  /* ========= PROFİL ========= */
+.profil-bolum { padding: 60px 48px; max-width: 1100px; margin: 0 auto; }
+.profil-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+.profil-menu { background: var(--krem); border: 1px solid #f0ebe5; padding: 32px 24px; position: sticky; top: 100px; }
+.profil-avatar { text-align: center; padding-bottom: 24px; border-bottom: 1px solid #f0ebe5; margin-bottom: 24px; }
+.avatar-daire { width: 80px; height: 80px; background: var(--altin); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 12px; }
+.profil-avatar h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--kahve); margin-bottom: 4px; }
+.profil-avatar p { font-size: 12px; color: #999; letter-spacing: 0.5px; }
+.profil-nav { display: flex; flex-direction: column; gap: 4px; }
+.profil-nav-link { text-decoration: none; color: var(--yazi-acik); font-size: 13px; padding: 12px 16px; border-radius: 2px; transition: all 0.3s; letter-spacing: 0.5px; display: block; }
+.profil-nav-link:hover { background: var(--altin-acik); color: var(--kahve); padding-left: 20px; }
+.aktif-profil { background: var(--kahve); color: var(--beyaz) !important; }
+.aktif-profil:hover { background: var(--kahve) !important; color: var(--beyaz) !important; padding-left: 16px !important; }
+.profil-nav-link.cikis { color: #e74c3c; margin-top: 12px; border-top: 1px solid #f0ebe5; padding-top: 16px; }
+.profil-nav-link.cikis:hover { background: #ffeaea; }
+.profil-icerik { background: var(--beyaz); border: 1px solid #f0ebe5; padding: 40px; }
+.profil-sekme { display: none; }
+.aktif-sekme { display: block; animation: fadeIn 0.4s ease; }
+.profil-baslik { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--kahve); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid #f0ebe5; font-style: italic; }
+.form-grup { display: flex; flex-direction: column; gap: 20px; }
+.form-satir { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-alan { display: flex; flex-direction: column; gap: 8px; }
+.form-alan label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--kahve); font-weight: 600; }
+.form-alan input, .form-alan select { padding: 12px 16px; border: 1px solid #e8e0d8; outline: none; font-size: 14px; font-family: 'Lato', sans-serif; transition: border-color 0.3s; background: var(--krem); color: var(--yazi); }
+.form-alan input:focus, .form-alan select:focus { border-color: var(--altin); }
+.profil-kaydet-btn { background: var(--kahve); color: var(--beyaz); border: none; padding: 14px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; align-self: flex-start; }
+.profil-kaydet-btn:hover { background: var(--altin); }
+.kaydet-mesaj { color: var(--altin); font-size: 13px; display: none; padding: 8px 0; }
+.siparis-kart { border: 1px solid #f0ebe5; padding: 24px; margin-bottom: 16px; transition: box-shadow 0.3s; }
+.siparis-kart:hover { box-shadow: 0 4px 20px rgba(62,32,18,0.08); }
+.siparis-ust { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.siparis-no { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--kahve); }
+.siparis-durum { font-size: 11px; letter-spacing: 1px; padding: 4px 12px; text-transform: uppercase; }
+.siparis-durum.teslim { background: #e8f5e9; color: #2e7d32; }
+.siparis-durum.kargo { background: #fff3e0; color: #e65100; }
+.siparis-tarih { font-size: 12px; color: #999; margin-bottom: 8px; }
+.siparis-urun { font-size: 14px; color: var(--yazi); margin-bottom: 6px; }
+.siparis-fiyat { font-size: 16px; color: var(--kahve); font-weight: 700; font-family: 'Playfair Display', serif; }
+.adres-kart { border: 1px solid #f0ebe5; padding: 24px; margin-bottom: 16px; transition: box-shadow 0.3s; }
+.adres-kart:hover { box-shadow: 0 4px 20px rgba(62,32,18,0.08); }
+.adres-ust { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.adres-etiket { font-weight: 600; color: var(--kahve); font-size: 14px; }
+.varsayilan-etiket { font-size: 10px; letter-spacing: 1px; background: var(--altin); color: var(--beyaz); padding: 3px 10px; text-transform: uppercase; }
+.adres-kart p { font-size: 14px; color: var(--yazi-acik); line-height: 1.8; }
+.adres-butonlar { display: flex; gap: 8px; margin-top: 16px; }
+.adres-btn { background: transparent; border: 1px solid var(--kahve); color: var(--kahve); padding: 8px 20px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; }
+.adres-btn:hover { background: var(--kahve); color: var(--beyaz); }
+.adres-btn.sil { border-color: #e74c3c; color: #e74c3c; }
+.adres-btn.sil:hover { background: #e74c3c; color: var(--beyaz); }
+.yeni-adres-btn { background: transparent; border: 1px dashed var(--altin); color: var(--altin); padding: 14px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; width: 100%; margin-top: 8px; }
+.yeni-adres-btn:hover { background: var(--altin); color: var(--beyaz); }
+.kredi-kart { background: linear-gradient(135deg, var(--kahve) 0%, #5c3317 100%); color: var(--beyaz); padding: 28px; border-radius: 4px; max-width: 340px; position: relative; overflow: hidden; }
+.kredi-kart::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(200,169,110,0.2); }
+.kredi-kart::after { content: ''; position: absolute; top: 20px; right: 20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(200,169,110,0.15); }
+.kart-ust { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.kart-tip { font-size: 18px; font-weight: 700; letter-spacing: 2px; }
+.kart-varsayilan { font-size: 10px; background: var(--altin); padding: 3px 10px; letter-spacing: 1px; }
+.kart-no { font-size: 20px; letter-spacing: 4px; margin-bottom: 16px; font-family: 'Playfair Display', serif; }
+.kart-ad { font-size: 12px; letter-spacing: 2px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+.kart-son { font-size: 12px; color: rgba(255,255,255,0.5); }
+.kart-listesi { margin-bottom: 24px; }
+.guvenlik-bolum { border: 1px solid #f0ebe5; padding: 28px; margin-bottom: 20px; }
+.guvenlik-bolum h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--kahve); margin-bottom: 16px; }
+.guvenlik-bolum.tehlike { border-color: #ffd5d5; background: #fff8f8; }
+.guvenlik-bolum.tehlike h4 { color: #e74c3c; }
+.tehlike-btn { background: #e74c3c; color: var(--beyaz); border: none; padding: 12px 28px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Lato', sans-serif; }
+.tehlike-btn:hover { background: #c0392b; }
+.toggle-satir { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f0ebe5; font-size: 14px; color: var(--yazi); }
+.toggle-satir:last-of-type { border-bottom: none; }
+.toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #ddd; transition: 0.3s; border-radius: 24px; }
+.toggle-slider::before { content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: var(--beyaz); transition: 0.3s; border-radius: 50%; }
+.toggle input:checked + .toggle-slider { background: var(--altin); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+@media (max-width: 768px) {
+  .profil-grid { grid-template-columns: 1fr; }
+  .profil-menu { position: static; }
+  .form-satir { grid-template-columns: 1fr; }
+  .profil-bolum { padding: 40px 20px; }
+}
 </style>
 </head>
 <body>
